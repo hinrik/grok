@@ -1,0 +1,49 @@
+#!/usr/bin/env perl
+
+# blows up if we use strict before this, damn source filter
+use Perl6::Perldoc::Parser;
+use Perl6::Perldoc::To::Text;
+
+use strict;
+use warnings;
+use Getopt::Long qw(:config auto_help);
+use Pod::Usage;
+
+our $VERSION = '0.01';
+
+GetOptions(
+   'F|file=s' => \my $from_file,
+) or pod2usage();
+
+if (!$from_file) {
+    die "Only -F is supported for now\n";
+}
+
+print Perl6::Perldoc::Parser->parse($from_file, {all_pod=>'auto'})
+                            ->report_errors()
+                            ->to_text();
+
+=head1 NAME
+
+grok - Read Perl 6 documentation
+
+=head1 SYNOPSIS
+
+B<grok> <options>
+
+ Options:
+   -F FILE, --file=FILE     Read documentation from the supplied file
+
+=head1 AUTHOR
+
+Hinrik E<Ouml>rn SigurE<eth>sson, hinrik.sig@gmail.com
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2009 Hinrik E<Ouml>rn SigurE<eth>sson
+
+Grok is distributed under the terms of the Artistic License 2.0.
+For more details, see the full text of the license in the file F<LICENSE>
+that came with this distribution.
+
+=cut
