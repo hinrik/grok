@@ -4,6 +4,11 @@ use utf8;
 use inc::Module::Install;
 use 5.006;
 
+if ($Module::Install::AUTHOR) {
+    system "$^X script/grok -f text -F script/grok.pod > README";
+}
+clean_files('README');
+
 name           ('grok');
 perl_version   ('5.006');
 author         ('Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>');
@@ -20,3 +25,4 @@ test_requires  ('Test::More'               => '0');
 test_requires  ('Test::Script'             => '0');
 tests_recursive;
 WriteAll();
+
