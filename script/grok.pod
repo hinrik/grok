@@ -1,3 +1,5 @@
+=begin pod
+
 =NAME
 grok - Read Perl 6 documentation
 
@@ -7,6 +9,14 @@ K<grok <options>>
  Options:
    -F FILE, --file=FILE     Read documentation from the supplied file
 =end SYNOPSIS
+
+=head1 Prior art and inspiration
+
+=item # L<Perl 5's K<perldoc>|http://perldoc.perl.org/perldoc.html>
+=item # L<Python's K<pydoc>|http://docs.python.org/library/pydoc.html>
+=item # L<Ruby's K<ri>|http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
+=item # L<http://svn.pugscode.org/pugs/ext/Perldoc/>
+=item # L<http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
 =AUTHOR
 Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>
@@ -20,3 +30,5 @@ that came with this distribution.
 =end LICENSE
 
 =comment vim: filetype=perl6
+
+=end pod
