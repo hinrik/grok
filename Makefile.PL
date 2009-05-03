@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-use utf8;
 use inc::Module::Install;
 use 5.006;
 
