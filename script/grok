@@ -2,21 +2,32 @@
 
 # blows up if we use strict before this, damn source filter
 use Perl6::Perldoc::Parser;
-use Perl6::Perldoc::To::Text;
 
 use strict;
 use warnings;
-use Getopt::Long qw(:config auto_help);
+use Getopt::Long qw(:config auto_help bundling);
 use Pod::Usage;
 
 our $VERSION = '0.01';
 
 GetOptions(
-   'F|file=s' => \my $from_file,
+    'F|file=s' => \my $from_file,
+    'f|format=s' => \(my $format = 'ansi'),
 ) or pod2usage();
 
-if (!$from_file) {
-    die "Only -F is supported for now\n";
+if (!defined $from_file) {
+    #die "Only -F is supported for now\n";
+}
+
+if ($format ne 'text' && $format ne 'ansi') {
+    die "Format '$format' is unsupported\n";
+}
+
+if ($format eq 'text') {
+    require Perl6::Perldoc::To::Text;
+}
+else {
+    require Perl6::Perldoc::To::Ansi;
 }
 
 print Perl6::Perldoc::Parser->parse($from_file, {all_pod=>'auto'})
