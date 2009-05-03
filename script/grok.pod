@@ -18,6 +18,16 @@ K<grok <options>>
 =item # L<http://svn.pugscode.org/pugs/ext/Perldoc/>
 =item # L<http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
+=begin WARNING
+=head2 Bugs in C<Perl6::Perldoc>
+
+Long lines are not wrapped to fit your terminal. Whitespace in paragraphs is
+preserved, counter to the spec.
+
+Formatting codes using french quotes (C<C«»>) aren't parsed correctly, so they
+are rendered verbatim.
+=end WARNING
+
 =AUTHOR
 Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>
 
