@@ -1,28 +1,22 @@
-=begin pod
-
-=head1 NAME
-
+=NAME
 grok - Read Perl 6 documentation
 
-=head1 SYNOPSIS
-
-B<grok> <options>
+=begin SYNOPSIS
+K<grok <options>>
 
  Options:
    -F FILE, --file=FILE     Read documentation from the supplied file
+=end SYNOPSIS
 
-=head1 AUTHOR
+=AUTHOR
+Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>
 
-Hinrik E<Ouml>rn SigurE<eth>sson, hinrik.sig@gmail.com
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2009 Hinrik E<Ouml>rn SigurE<eth>sson
+=begin LICENSE
+Copyright 2009 Hinrik Örn Sigurðsson
 
 Grok is distributed under the terms of the Artistic License 2.0.
-For more details, see the full text of the license in the file F<LICENSE>
+For more details, see the full text of the license in the file L<LICENSE>
 that came with this distribution.
+=end LICENSE
 
 =comment vim: filetype=perl6
-
-=end pod
