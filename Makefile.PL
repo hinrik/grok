@@ -10,6 +10,7 @@ author         ('Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>');
 abstract       ('Perl 6 documentation reader');
 version_from   ('script/grok');
 install_script ('script/grok');
+no_index       (directory => 't_source');
 license        ('artistic_2');
 requires       ('Getopt::Long'   => '2.33');
 requires       ('Perl6::Perldoc' => '0.0.5');
