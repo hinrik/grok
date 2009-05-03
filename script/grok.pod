@@ -1,7 +1,7 @@
 =begin pod
 
 =NAME
-grok - Read Perl 6 documentation
+grok - Perl 6 documentation reader
 
 =begin SYNOPSIS
 K<grok <options>>
