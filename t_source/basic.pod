@@ -1,5 +1,5 @@
 =begin pod
-=para Foo
+=para C<Foo>
 =para Bar
 =para Baz
 =end pod
