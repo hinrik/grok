@@ -16,7 +16,7 @@ GetOptions(
 ) or pod2usage();
 
 if (!defined $from_file) {
-    #die "Only -F is supported for now\n";
+    die "You must supply --file with an argument; see --help\n";
 }
 
 if ($format ne 'text' && $format ne 'ansi') {
@@ -34,3 +34,16 @@ print Perl6::Perldoc::Parser->parse($from_file, {all_pod=>'auto'})
                             ->report_errors()
                             ->to_text();
 
+=head1 NAME
+
+grok - Perl 6 documentation reader
+
+=head1 SYNOPSIS
+
+B<grok> <options>
+
+ Options:
+   -F FILE, --file=FILE         A file to read Pod from
+   -f FORMAT, --format=FORMAT   The output format, ansi(default) or text
+
+=cut

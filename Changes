@@ -1,5 +1,7 @@
 0.02
     - Ship a README file generated from the Pod source
+    - Exit with better diagnostics on failure
+    - Print usage information when --help is used
 
 0.01 Sun May  3 18:17:29 GMT 2009
     - Initial release
