@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+package grok;
+
 # blows up if we use strict before this, damn source filter
 use Perl6::Perldoc::Parser;
 
