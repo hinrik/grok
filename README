@@ -11,15 +11,15 @@ Synopsis
 
 
 Prior art and inspiration
-    1. Perl 5's `perldoc` <http://perldoc.perl.org/perldoc.html>
+    * Perl 5's `perldoc` <http://perldoc.perl.org/perldoc.html>
     
-    2. Python's `pydoc` <http://docs.python.org/library/pydoc.html>
+    * Python's `pydoc` <http://docs.python.org/library/pydoc.html>
     
-    3. Ruby's `ri` <http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
+    * Ruby's `ri` <http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
     
-    4. http://svn.pugscode.org/pugs/ext/Perldoc/
+    * http://svn.pugscode.org/pugs/ext/Perldoc/
     
-    5. http://svn.pugscode.org/pugs/examples/perldoc.pl
+    * http://svn.pugscode.org/pugs/examples/perldoc.pl
 
 Warning
 
@@ -39,6 +39,6 @@ License
 
 Copyright 2009 Hinrik Örn Sigurðsson
 
-Grok is distributed under the terms of the Artistic License 2.0.
+`grok` is distributed under the terms of the Artistic License 2.0.
 For more details, see the full text of the license in the file LICENSE
 that came with this distribution.

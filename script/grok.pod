@@ -12,11 +12,11 @@ K<grok <options>>
 
 =head1 Prior art and inspiration
 
-=item # L<Perl 5's K<perldoc>|http://perldoc.perl.org/perldoc.html>
-=item # L<Python's K<pydoc>|http://docs.python.org/library/pydoc.html>
-=item # L<Ruby's K<ri>|http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
-=item # L<http://svn.pugscode.org/pugs/ext/Perldoc/>
-=item # L<http://svn.pugscode.org/pugs/examples/perldoc.pl>
+=item L<Perl 5's K<perldoc>|http://perldoc.perl.org/perldoc.html>
+=item L<Python's K<pydoc>|http://docs.python.org/library/pydoc.html>
+=item L<Ruby's K<ri>|http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
+=item L<http://svn.pugscode.org/pugs/ext/Perldoc/>
+=item L<http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
 =begin WARNING
 =head2 Bugs in C<Perl6::Perldoc>
@@ -34,7 +34,7 @@ Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>
 =begin LICENSE
 Copyright 2009 Hinrik Örn Sigurðsson
 
-Grok is distributed under the terms of the Artistic License 2.0.
+K<grok> is distributed under the terms of the Artistic License 2.0.
 For more details, see the full text of the license in the file L<LICENSE>
 that came with this distribution.
 =end LICENSE
