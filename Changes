@@ -1,4 +1,4 @@
-0.02
+0.02 Mon May  4 00:40:23 GMT 2009
     - Ship a README file generated from the Pod source
     - Exit with better diagnostics on failure
     - Print usage information when --help is used
