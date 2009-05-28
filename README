@@ -2,14 +2,6 @@ Name
 
 grok - Perl 6 documentation reader
 
-Synopsis
-
-`grok <options>`
-
-    Options:
-      -F FILE, --file=FILE     Read documentation from the supplied file
-
-
 Prior art and inspiration
     * Perl 5's `perldoc` <http://perldoc.perl.org/perldoc.html>
     

@@ -3,13 +3,6 @@
 =NAME
 grok - Perl 6 documentation reader
 
-=begin SYNOPSIS
-K<grok <options>>
-
- Options:
-   -F FILE, --file=FILE     Read documentation from the supplied file
-=end SYNOPSIS
-
 =head1 Prior art and inspiration
 
 =item L<Perl 5's K<perldoc>|http://perldoc.perl.org/perldoc.html>
