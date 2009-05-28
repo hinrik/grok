@@ -10,7 +10,7 @@ use warnings;
 use Getopt::Long qw(:config bundling);
 use Pod::Usage;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 GetOptions(
     'F|file=s'   => \my $from_file,

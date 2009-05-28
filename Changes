@@ -1,4 +1,4 @@
-0.03
+0.03 Thu May 28 15:49:00 GMT 2009
     - Declare a package other than main, so "cpanp -i grok" should work
     - Added a TODO file
     - Added -h, -v, and --version options
