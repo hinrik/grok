@@ -1,5 +1,6 @@
 0.03
     - Declare a package other than main, so "cpanp -i grok" should work
+    - Added a TODO file
 
 0.02 Mon May  4 00:40:23 GMT 2009
     - Ship a README file generated from the Pod source

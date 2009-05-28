@@ -1,0 +1,20 @@
+Features
+--------------------
+
+ * Add switch for html output (-f html)
+ * Add switch to display the raw pod output. perldoc uses -u (unformatted)
+ * Use a pager by default add switch to disable pager (perldoc uses -T)
+ * Add -l switch to print name of module like perldoc
+ * Add -m switch to display module's file in its entirety like perldoc
+ * Think about i18n, add -L for lang code like perldoc
+ * Add a switch to list all things known to grok (like "ri -l"), -l/--list
+   would be  good, but -l and -L are already used above, hm. Maybe -i/--index
+   or -t/--toc
+ * Use Pod::Parser or Pod::Perldoc to read Perl 5 Pod. It's needed for the
+   Synopses
+
+
+Perl6::Perldoc-related
+--------------------
+ * Figure out how to wrap lines to $COLUMNS
+ * Maybe write an nroff renderer
