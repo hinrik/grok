@@ -11,6 +11,8 @@ TODO
 t/01_compile.t
 t/02_opts/01_file.t
 t/02_opts/02_format.t
+t/02_opts/03_help.t
+t/02_opts/04_version.t
 t_source/basic.pod
 inc/Module/Install.pm
 inc/Module/Install/Base.pm

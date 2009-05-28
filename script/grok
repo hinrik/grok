@@ -7,14 +7,16 @@ use Perl6::Perldoc::Parser;
 
 use strict;
 use warnings;
-use Getopt::Long qw(:config auto_help bundling);
+use Getopt::Long qw(:config bundling);
 use Pod::Usage;
 
 our $VERSION = '0.02';
 
 GetOptions(
-    'F|file=s' => \my $from_file,
+    'F|file=s'   => \my $from_file,
     'f|format=s' => \(my $format = 'ansi'),
+    'h|help'     => sub { pod2usage(1) },
+    'v|version'  => sub { print "grok $VERSION\n"; exit },
 ) or pod2usage();
 
 if (!defined $from_file) {
@@ -47,5 +49,7 @@ B<grok> <options>
  Options:
    -F FILE, --file=FILE         A file to read Pod from
    -f FORMAT, --format=FORMAT   The output format, ansi(default) or text
+   -h, --help                   Print this help message
+   -v, --version                Print version information
 
 =cut
