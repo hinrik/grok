@@ -18,6 +18,6 @@ requires       ('Perl6::Perldoc::To::Ansi' => '0.01');
 requires       ('Pod::Usage'               => '0');
 test_requires  ('Test::More'               => '0');
 test_requires  ('Test::Script'             => '0');
-tests_recursive;
+tests_recursive();
 WriteAll();
 
