@@ -3,7 +3,6 @@ Features
 
  * Add switch for html output (-f html)
  * Add switch to display the raw pod output. perldoc uses -u (unformatted)
- * Use a pager by default add switch to disable pager (perldoc uses -T)
  * Add -l switch to print name of module like perldoc
  * Add -m switch to display module's file in its entirety like perldoc
  * Think about i18n, add -L for lang code like perldoc
