@@ -13,6 +13,8 @@ no_index       (directory => 't_source');
 #install_share  ();
 license        ('artistic_2');
 requires       ('Getopt::Long'             => '2.33');
+requires       ('IO::Interactive'          => '0');
+requires       ('File::Temp'               => '0');
 requires       ('Perl6::Perldoc'           => '0.0.5');
 requires       ('Perl6::Perldoc::To::Ansi' => '0.01');
 requires       ('Pod::Usage'               => '0');

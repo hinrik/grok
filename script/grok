@@ -16,6 +16,7 @@ B<grok> <options>
    -F FILE, --file=FILE         A file to read Pod from
    -f FORMAT, --format=FORMAT   The output format, ansi(default) or text
    -h, --help                   Print this help message
+   -T, --no-pager               Send output to STDOUT without any pager
    -v, --version                Print version information
 
 =cut
