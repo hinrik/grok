@@ -12,34 +12,15 @@ use Getopt::Long qw<:config bundling>;
 use Pod::Usage;
 
 our $VERSION = '0.03';
+my %opt;
 
 sub run {
-    GetOptions(
-        'F|file=s'   => \my $from_file,
-        'f|format=s' => \(my $format = 'ansi'),
-        'h|help'     => sub { pod2usage(1) },
-        'T|no-pager' => \my $no_pager,
-        'v|version'  => sub { print "grok $VERSION\n"; exit },
-    ) or pod2usage();
-
-    if (!defined $from_file) {
-        die "You must supply --file with an argument; see --help\n";
-    }
-    
-    if ($format ne 'text' && $format ne 'ansi') {
-        die "Format '$format' is unsupported\n";
-    }
-    
-    $format eq 'text'
-        ? require Perl6::Perldoc::To::Text
-        : require Perl6::Perldoc::To::Ansi
-    ;
-
-    my $pod = Perl6::Perldoc::Parser->parse($from_file, {all_pod=>'auto'})
+    get_options();
+    my $pod = Perl6::Perldoc::Parser->parse($opt{file}, {all_pod=>'auto'})
                                     ->report_errors()
                                     ->to_text();
 
-    if ($no_pager || !is_interactive()) {
+    if ($opt{no_pager} || !is_interactive()) {
         print $pod;
     }
     else {
@@ -48,6 +29,30 @@ sub run {
         print $temp_fh $pod;
         system $pager, $temp;
     }
+}
+
+sub get_options {
+    GetOptions(
+        'F|file=s'   => \$opt{file},
+        'f|format=s' => \($opt{format} = 'ansi'),
+        'h|help'     => sub { pod2usage(1) },
+        'T|no-pager' => \$opt{no_pager},
+        'v|version'  => sub { print "grok $VERSION\n"; exit },
+    ) or pod2usage();
+
+    if (!defined $opt{file}) {
+        die "You must supply --file with an argument; see --help\n";
+    }
+    
+    if ($opt{format} ne 'text' && $opt{format} ne 'ansi') {
+        die "Format '$opt{format}' is unsupported\n";
+    }
+    
+    $opt{format} eq 'text'
+        ? require Perl6::Perldoc::To::Text
+        : require Perl6::Perldoc::To::Ansi
+    ;
+
 }
 
 1;
