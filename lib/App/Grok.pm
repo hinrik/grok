@@ -49,3 +49,5 @@ sub run {
         system $pager, $temp;
     }
 }
+
+1;
