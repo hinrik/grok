@@ -2,7 +2,8 @@
 
 package grok;
 use App::Grok;
-App::Grok->run();
+my $grok = App::Grok->new();
+$grok->run();
 
 =head1 NAME
 

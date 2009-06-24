@@ -14,21 +14,13 @@ use Pod::Usage;
 our $VERSION = '0.03';
 my %opt;
 
+sub new {
+    return bless { }, shift;
+}
+
 sub run {
     get_options();
-    my $pod = Perl6::Perldoc::Parser->parse($opt{file}, {all_pod=>'auto'})
-                                    ->report_errors()
-                                    ->to_text();
-
-    if ($opt{no_pager} || !is_interactive()) {
-        print $pod;
-    }
-    else {
-        my $pager = $Config{pager};
-        my ($temp_fh, $temp) = tempfile(UNLINK => 1);
-        print $temp_fh $pod;
-        system $pager, $temp;
-    }
+    render();
 }
 
 sub get_options {
@@ -47,12 +39,27 @@ sub get_options {
     if ($opt{format} ne 'text' && $opt{format} ne 'ansi') {
         die "Format '$opt{format}' is unsupported\n";
     }
-    
+}
+
+sub render {
     $opt{format} eq 'text'
         ? require Perl6::Perldoc::To::Text
         : require Perl6::Perldoc::To::Ansi
     ;
 
+    my $pod = Perl6::Perldoc::Parser->parse($opt{file}, {all_pod=>'auto'})
+                                    ->report_errors()
+                                    ->to_text();
+
+    if ($opt{no_pager} || !is_interactive()) {
+        print $pod;
+    }
+    else {
+        my $pager = $Config{pager};
+        my ($temp_fh, $temp) = tempfile(UNLINK => 1);
+        print $temp_fh $pod;
+        system $pager, $temp;
+    }
 }
 
 1;
