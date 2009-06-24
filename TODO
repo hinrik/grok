@@ -9,8 +9,8 @@ Features
  * Add a switch to list all things known to grok (like "ri -l"), -l/--list
    would be  good, but -l and -L are already used above, hm. Maybe -i/--index
    or -t/--toc
- * Use Pod::Parser or Pod::Perldoc to read Perl 5 Pod. It's needed for the
-   Synopses
+ * Somehow detect whether a file is Pod 5 or Pod 6
+ * Get rid of redefinition warnings in t/02_source/02_pod6.t
 
 
 Perl6::Perldoc-related
