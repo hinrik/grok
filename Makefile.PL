@@ -7,7 +7,7 @@ name           ('grok');
 perl_version   ('5.006');
 author         ('Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>');
 abstract       ('Perl 6 documentation reader');
-version_from   ('script/grok');
+version_from   ('lib/App/Grok.pm');
 install_script ('script/grok');
 no_index       (directory => 't_source');
 install_share  ();
