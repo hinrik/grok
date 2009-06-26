@@ -28,6 +28,8 @@ sub render {
 
 1;
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Grok::Pod6 - A Pod 6 backend for grok

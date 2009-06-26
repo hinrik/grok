@@ -130,6 +130,8 @@ sub render_file {
 
 1;
 
+=encoding UTF-8
+
 =head1 NAME
 
 App::Grok - Does most of grok's heavy lifting
