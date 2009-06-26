@@ -11,7 +11,7 @@ grok - Perl 6 documentation reader
 
 =head1 SYNOPSIS
 
-B<grok> <options>
+B<grok> <options> <target>
 
  Options:
    -F FILE, --file=FILE         A file to read Pod from
@@ -19,5 +19,53 @@ B<grok> <options>
    -h, --help                   Print this help message
    -T, --no-pager               Send output to STDOUT without any pager
    -v, --version                Print version information
+
+ If you don't supply the -F option, you need to supply a target.
+ The following targets are recognized:
+
+   * A synopsis (e.g. 's02', 's02-bits', 's32-rules')
+   * A path to a file containing Pod 6
+
+=head1 DESCRIPTION
+
+This little application is intended to C<perldoc> for Perl 6.
+
+=head2 Prior art and inspiration
+
+=over 4
+
+=item L<Perl 5's C<perldoc>|http://perldoc.perl.org/perldoc.html>
+
+=item L<Python's C<pydoc>|http://docs.python.org/library/pydoc.html>
+
+=item L<Ruby's C<ri>|http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
+
+=item L<http://svn.pugscode.org/pugs/ext/Perldoc/>
+
+=item L<http://svn.pugscode.org/pugs/examples/perldoc.pl>
+
+=back
+
+=head1 CAVEATS
+
+=head2 Limitations of C<Perl6::Perldoc>
+
+Long lines are not wrapped to fit your terminal. Whitespace in paragraphs is
+preserved, counter to the spec.
+
+Formatting codes using french quotes (C<C«»>) aren't parsed correctly, so they
+are rendered verbatim.
+
+=head1 AUTHOR
+
+Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2009 Hinrik Örn Sigurðsson
+
+C<grok> is distributed under the terms of the Artistic License 2.0.
+For more details, see the full text of the license in the file F<LICENSE>
+that came with this distribution.
 
 =cut

@@ -1,36 +1,47 @@
-Name
+NAME
+    grok - Perl 6 documentation reader
 
-grok - Perl 6 documentation reader
+SYNOPSIS
+    grok <options> <target>
 
-Prior art and inspiration
-    * Perl 5's `perldoc` <http://perldoc.perl.org/perldoc.html>
-    
-    * Python's `pydoc` <http://docs.python.org/library/pydoc.html>
-    
-    * Ruby's `ri` <http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>
-    
-    * http://svn.pugscode.org/pugs/ext/Perldoc/
-    
-    * http://svn.pugscode.org/pugs/examples/perldoc.pl
+     Options:
+       -F FILE, --file=FILE         A file to read Pod from
+       -f FORMAT, --format=FORMAT   The output format, ansi(default) or text
+       -h, --help                   Print this help message
+       -T, --no-pager               Send output to STDOUT without any pager
+       -v, --version                Print version information
 
-Warning
+     If you don't supply the -F option, you need to supply a target.
+     The following targets are recognized:
 
-Bugs in `Perl6::Perldoc`
+       * A synopsis (e.g. 's02', 's02-bits', 's32-rules')
+       * A path to a file containing Pod 6
 
-Long lines are not wrapped to fit your terminal. Whitespace in paragraphs is
-preserved, counter to the spec.
+DESCRIPTION
+    This little application is intended to "perldoc" for Perl 6.
 
-Formatting codes using french quotes (`C«»`) aren't parsed correctly, so they
-are rendered verbatim.
+  Prior art and inspiration
+    Perl 5's "perldoc"
+    Python's "pydoc"
+    Ruby's "ri"
+    <http://svn.pugscode.org/pugs/ext/Perldoc/>
+    <http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
-Author
+CAVEATS
+  Limitations of "Perl6::Perldoc"
+    Long lines are not wrapped to fit your terminal. Whitespace in
+    paragraphs is preserved, counter to the spec.
 
-Hinrik Örn Sigurðsson, hinrik.sig@gmail.com
+    Formatting codes using french quotes ("C«»") aren't parsed correctly,
+    so they are rendered verbatim.
 
-License
+AUTHOR
+    Hinrik Örn Sigurðsson, hinrik.sig@gmail.com
 
-Copyright 2009 Hinrik Örn Sigurðsson
+LICENSE AND COPYRIGHT
+    Copyright 2009 Hinrik Örn Sigurðsson
 
-`grok` is distributed under the terms of the Artistic License 2.0.
-For more details, see the full text of the license in the file LICENSE
-that came with this distribution.
+    "grok" is distributed under the terms of the Artistic License 2.0. For
+    more details, see the full text of the license in the file LICENSE that
+    came with this distribution.
+
