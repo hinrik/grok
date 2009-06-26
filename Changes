@@ -1,4 +1,4 @@
-0.06
+0.06 Fri Jun 26 08:19:06 GMT 2009
     - Add -l/--only option to print the path to the target file
     - Bail out with an error message when target is unknown
 
