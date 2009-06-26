@@ -1,4 +1,4 @@
-0.04
+0.04 Fri Jun 26 04:57:51 GMT 2009
     - Use a pager when interactive, can be turned off with -T
     - Support Pod 5
     - Support arguments like 's02', 's26', and 's32-exception'
