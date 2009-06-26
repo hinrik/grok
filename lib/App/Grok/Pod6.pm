@@ -14,16 +14,16 @@ sub new {
 }
 
 sub render {
-    my ($self, $file, $out_fh, $format) = @_;
+    my ($self, $file, $format) = @_;
 
     $format eq 'ansi'
         ? require Perl6::Perldoc::To::Ansi
         : require Perl6::Perldoc::To::Text
     ;
 
-    print $out_fh Perl6::Perldoc::Parser->parse($file, {all_pod=>'auto'})
-                                        ->report_errors()
-                                        ->to_text();
+    return Perl6::Perldoc::Parser->parse($file, {all_pod=>'auto'})
+                                 ->report_errors()
+                                 ->to_text();
 }
 
 1;

@@ -11,7 +11,7 @@ sub new {
 }
 
 sub render {
-    my ($self, $file, $out_fh, $format) = @_;
+    my ($self, $file, $format) = @_;
 
     my $formatter = $format eq 'ansi'
         ? 'Pod::Text::Color'
@@ -19,7 +19,13 @@ sub render {
     ;
 
     eval "require $formatter";
+    die $@ if $@;
+
+    my $pod = '';
+    open my $out_fh, '>', \$pod or die "Can't open output filehandle: $!";
+    binmode $out_fh, ':utf8';
     $formatter->new->parse_from_file($file, $out_fh);
+    return $pod;
 }
 
 1;

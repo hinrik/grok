@@ -104,11 +104,7 @@ sub render_file {
     
     eval "require $renderer";
     die $@ if $@;
-
-    my $pod;
-    open my $out_fh, '>', \$pod or die "Couldn't open output FH: $!";
-    binmode $out_fh, ':utf8';
-    $renderer->new->render($file, $out_fh, $opt{format});
+    my $pod = $renderer->new->render($file, $opt{format});
 
     if ($opt{no_pager} || !is_interactive()) {
         print $pod;
