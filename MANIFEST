@@ -45,7 +45,6 @@ share/Spec/S26-documentation.pod
 share/Spec/S28-special-names.pod
 share/Spec/S29-functions.pod
 share/Spec/S31-pragmatic-modules.pod
-share/Spec/S32-setting-library
 share/Spec/S32-setting-library/Abstraction.pod
 share/Spec/S32-setting-library/Basics.pod
 share/Spec/S32-setting-library/Callable.pod
@@ -63,5 +62,6 @@ inc/Module/Install/Fetch.pm
 inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Scripts.pm
+inc/Module/Install/Share.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
