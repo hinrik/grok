@@ -20,12 +20,20 @@ sub new {
 
 sub run {
     get_options();
+    my ($target, $renderer);
+
     if (defined $opt{file}) {
-        render_file($opt{file}, 'App::Grok::Pod6');
+        ($target, $renderer) = ($opt{file}, 'App::Grok::Pod6');
     }
     else {
-        my $arg = shift @ARGV;
-        find_target($arg);
+        ($target, $renderer) = find_target($ARGV[0]);
+    }
+
+    if ($opt{only}) {
+        print "$target\n";
+    }
+    else {
+        render_file($target, $renderer);
     }
 }
 
@@ -34,6 +42,7 @@ sub get_options {
         'F|file=s'   => \$opt{file},
         'f|format=s' => \($opt{format} = 'ansi'),
         'h|help'     => sub { pod2usage(1) },
+        'l|only'     => \$opt{only},
         'T|no-pager' => \$opt{no_pager},
         'v|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
@@ -53,7 +62,7 @@ sub find_target {
     ($target, $renderer) = find_file($arg) if !defined $target;
 
     die "Target '$arg' not recognized\n" if !$target;
-    render_file($target, $renderer);
+    return ($target, $renderer);
 }
 
 sub find_synopsis {
