@@ -29,6 +29,8 @@ sub run {
         ($target, $renderer) = find_target($ARGV[0]);
     }
 
+    die "No matching files found for target '$target'" if !-e $target;
+
     if ($opt{only}) {
         print "$target\n";
     }
