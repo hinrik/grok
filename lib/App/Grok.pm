@@ -62,7 +62,7 @@ sub find_synopsis {
     # we override this during testing
     my $share = defined $ENV{GROK_SHAREDIR}
         ? $ENV{GROK_SHAREDIR}
-        : dist_dir('App-Grok')
+        : dist_dir('grok')
     ;
     my $dir = catdir($share, 'Spec');
 

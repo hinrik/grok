@@ -1,3 +1,6 @@
+0.05
+    - Fix location of shared files (synopses)
+
 0.04 Fri Jun 26 05:11:13 GMT 2009
     - Use a pager when interactive, can be turned off with -T
     - Support Pod 5
