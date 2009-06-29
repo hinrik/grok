@@ -31,7 +31,7 @@ B<grok> <options> <target>
 
 =head1 DESCRIPTION
 
-This little application is intended to a C<perldoc> for Perl 6.
+This little application is intended to be a C<L<perldoc>> for Perl 6.
 
 =head2 Prior art and inspiration
 
