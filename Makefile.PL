@@ -19,6 +19,7 @@ requires       ('File::Temp'               => '0');
 requires       ('Perl6::Perldoc'           => '0.0.5');
 requires       ('Perl6::Perldoc::To::Ansi' => '0.03');
 requires       ('Pod::Usage'               => '0');
+requires       ('Win32::Console::ANSI'     => '0') if $^O eq 'MSWin32';
 test_requires  ('Test::More'               => '0');
 test_requires  ('Test::Script'             => '0');
 tests_recursive();
