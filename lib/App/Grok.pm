@@ -124,7 +124,10 @@ sub render_file {
         my $pager = $Config{pager};
         my ($temp_fh, $temp) = tempfile(UNLINK => 1);
         print $temp_fh $pod;
-        system $pager, $temp;
+        close $temp_fh;
+
+        # $pager might be 'more /e' on Win32 so we must pass a string
+        system $pager . qq{ "$temp"};
     }
 }
 
