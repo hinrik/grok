@@ -1,4 +1,4 @@
-0.07
+0.07 Tue Jun 30 12:06:37 GMT 2009
     - Explicitly call grok with $^X in tests, needed on Win32
 
 0.06 Fri Jun 26 08:19:06 GMT 2009
