@@ -10,5 +10,5 @@ $ENV{GROK_SHAREDIR} = 'share';
 my $file = catfile('t_source', 'basic.pod');
 my $grok = catfile('script', 'grok');
 
-my $result = qx/$grok $file/;
+my $result = qx/$^X $grok $file/;
 like($result, qr/Baz/, "Got result");
