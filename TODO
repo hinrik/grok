@@ -3,13 +3,14 @@ Features
 
  * Add switch for html output (-f html)
  * Add switch to display the raw pod output. perldoc uses -u (unformatted)
- * Add -l switch to print name of module like perldoc
  * Add -m switch to display module's file in its entirety like perldoc
  * Think about i18n, add -L for lang code like perldoc
- * Add a switch to list all things known to grok (like "ri -l"), -l/--list
-   would be  good, but -l and -L are already used above, hm. Maybe -i/--index
-   or -t/--toc
- * Somehow detect whether a file is Pod 5 or Pod 6
+ * Add a switch to list all things known to grok (like "ri -l"), maybe
+   -i/--index or -t/--toc
+ * Somehow detect whether a file is Pod 5 or Pod 6. A simple test might
+   be to look for =begin (Pod 6) and =cut (Pod 5)
+ * Borrow the S32 function lookup feature (grok -f FUNCTION) from
+   Padre::Plugin::Perl6
 
 
 Perl6::Perldoc-related
