@@ -9,6 +9,6 @@ my $result_short = qx/$^X $script -F $pod/;
 my $result_long = qx/$^X $script --file $pod/;
 
 for my $para (qw(Foo Bar Baz)) {
-    like($result_short, qr/$para/, "Paragraph $para (short)");
-    like($result_long, qr/$para/, "Paragraph $para (long)");
+    like($result_short, qr/$para/, "Paragraph $para (-F)");
+    like($result_long, qr/$para/, "Paragraph $para (--file)");
 }

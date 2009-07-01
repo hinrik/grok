@@ -7,6 +7,6 @@ my $script = catfile('script', 'grok');
 my $result_short = qx/$^X $script -h/;
 my $result_long = qx/$^X $script --help/;
 
-like($result_short, qr/Options:/, "Got help message (short)");
-like($result_long, qr/Options:/, "Got help message (long)");
+like($result_short, qr/Options:/, "Got help message (-h)");
+like($result_long, qr/Options:/, "Got help message (--help)");
 
