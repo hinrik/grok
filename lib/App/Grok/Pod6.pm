@@ -16,7 +16,9 @@ sub new {
 sub render {
     my ($self, $file, $format) = @_;
 
-    die "Format $format unsupported" if $format !~ /^(?:ansi|text|xhtml)$/;
+    if ($format !~ /^(?:ansi|text|xhtml)$/) {
+        die __PACKAGE__ . " doesn't support the '$format' format";
+    }
     eval "require Perl6::Perldoc::To::\u$format";
     die $@ if $@;
 
