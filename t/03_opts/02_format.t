@@ -1,17 +1,39 @@
 use strict;
 use warnings;
 use File::Spec::Functions 'catfile';
-use Test::More tests => 4;
+use Test::More tests => 6;
 
 my $script = catfile('script', 'grok');
-my $pod = catfile('t_source', 'basic.pod');
-my $result_text_short = qx/$^X $script -F $pod -f text/;
-my $result_text_long = qx/$^X $script -F $pod --format text/;
-my $result_ansi_short = qx/$^X $script -F $pod -f ansi/;
-my $result_ansi_long = qx/$^X $script -F $pod --format ansi/;
 
-isnt($result_text_short, $result_ansi_short, "Text and Ansi are different (-f)");
-like($result_ansi_short, qr/\e\[/, "Ansi has color codes (-f)");
-isnt($result_text_long, $result_ansi_long, "Text and Ansi are different (--format)");
-like($result_ansi_long, qr/\e\[/, "Ansi has color codes (--format)");
+my $pod6 = catfile('t_source', 'basic.pod');
+my $pod6_text_short = qx/$^X $script -F $pod6 -f text/;
+my $pod6_text_long = qx/$^X $script -F $pod6 --format text/;
+my $pod6_ansi_short = qx/$^X $script -F $pod6 -f ansi/;
+my $pod6_ansi_long = qx/$^X $script -F $pod6 --format ansi/;
+my $pod6_xhtml_short = qx/$^X $script -F $pod6 -f xhtml/;
+my $pod6_xhtml_long  = qx/$^X $script -F $pod6 --format xhtml/;
 
+isnt($pod6_text_short, $pod6_ansi_short, "Pod 6 text and ANSI are different (-f)");
+like($pod6_ansi_short, qr/\e\[/, "Pod 6 ANSI has color codes (-f)");
+isnt($pod6_text_long, $pod6_ansi_long, "Pod 6 text and ANSI are different (--format)");
+like($pod6_ansi_long, qr/\e\[/, "Pod 6 ANSI has color codes (--format)");
+isnt($pod6_text_long, $pod6_xhtml_long, "Pod 6 text and xhtml are different (--format)");
+like($pod6_xhtml_long, qr/<p>/, "Pod 6 xhtml has <p> (--format)");
+
+# TODO: uncomment these when grok learns how to detect Pod 5
+=pod
+my $pod5 = catfile('t_source', 'basic5.pod');
+my $pod5_text_short  = qx/$^X $script -F $pod5 -f text/;
+my $pod5_text_long   = qx/$^X $script -F $pod5 --format text/;
+my $pod5_ansi_short  = qx/$^X $script -F $pod5 -f ansi/;
+my $pod5_ansi_long   = qx/$^X $script -F $pod5 --format ansi/;
+my $pod5_xhtml_short = qx/$^X $script -F $pod5 -f xhtml/;
+my $pod5_xhtml_long  = qx/$^X $script -F $pod5 --format xhtml/;
+
+isnt($pod5_text_short, $pod5_ansi_short, "Pod 5 text and ANSI are different (-f)");
+like($pod5_ansi_short, qr/\e\[/, "Pod 5 ANSI has color codes (-f)");
+isnt($pod5_text_long, $pod5_ansi_long, "Pod 5 text and ANSI are different (--format)");
+like($pod5_ansi_long, qr/\e\[/, "Pod 5 ANSI has color codes (--format)");
+isnt($pod5_text_long, $pod5_xhtml_long, "Pod 5 text and xhtml are different (--format)");
+like($pod5_xhtml_long, qr/<p>/, "Pod 5 xhtml has <p> (--format)");
+=cut
