@@ -18,6 +18,7 @@ t/03_opts/02_format.t
 t/03_opts/03_help.t
 t/03_opts/04_version.t
 t/03_opts/05_no_pager.t
+t/03_opts/06_index.t
 t/04_targets/01_file.t
 t/04_targets/02_synopsis.t
 t_source/basic.pod

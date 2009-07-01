@@ -15,18 +15,32 @@ our $VERSION = '0.07';
 my %opt;
 
 sub new {
-    return bless { }, shift;
+    my ($package, %self) = @_;
+
+    $self{share_dir} = defined $ENV{GROK_SHAREDIR}
+        ? $ENV{GROK_SHAREDIR}
+        : dist_dir('grok')
+    ;
+
+    return bless \%self, $package;
 }
 
 sub run {
-    get_options();
+    my ($self) = @_;
+
+    $self->get_options();
     my ($target, $renderer);
+
+    if ($opt{index}) {
+        print $self->target_index();
+        return;
+    }
 
     if (defined $opt{file}) {
         ($target, $renderer) = ($opt{file}, 'App::Grok::Pod6');
     }
     else {
-        ($target, $renderer) = find_target($ARGV[0]);
+        ($target, $renderer) = $self->find_target($ARGV[0]);
     }
 
     die "No matching files found for target '$target'" if !-e $target;
@@ -35,43 +49,56 @@ sub run {
         print "$target\n";
     }
     else {
-        render_file($target, $renderer);
+        $self->render_file($target, $renderer);
     }
 }
 
 sub get_options {
+    my ($self) = @_;
+
     GetOptions(
         'F|file=s'   => \$opt{file},
         'f|format=s' => \($opt{format} = 'ansi'),
         'h|help'     => sub { pod2usage(1) },
+        'i|index'    => \$opt{index},
         'l|only'     => \$opt{only},
         'T|no-pager' => \$opt{no_pager},
         'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
-    die "Too few arguments\n" if !defined $opt{file} && !@ARGV;
+    die "Too few arguments\n" if !$opt{index} && !defined $opt{file} && !@ARGV;
+}
+
+sub target_index {
+    my ($self) = @_;
+    my $dir = catdir($self->{share_dir}, 'Spec');
+    my @index;
+
+    my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
+    push @index, @synopses;
+
+    my $S32_dir = catdir($dir, 'S32-setting-library');
+    my @sections = map { (splitpath($_))[2] } glob "$S32_dir/*.pod";
+    push @index, map { "S32-$_" } @sections;
+
+    s/\.pod$// for @index;
+    return join("\n", @index) . "\n";
 }
 
 sub find_target {
-    my ($arg) = @_;
+    my ($self, $arg) = @_;
 
     my ($target, $renderer);
-    ($target, $renderer) = find_synopsis($arg);
-    ($target, $renderer) = find_file($arg) if !defined $target;
+    ($target, $renderer) = $self->find_synopsis($arg);
+    ($target, $renderer) = $self->find_file($arg) if !defined $target;
 
     die "Target '$arg' not recognized\n" if !$target;
     return ($target, $renderer);
 }
 
 sub find_synopsis {
-    my ($syn) = @_;
-
-    # we override this during testing
-    my $share = defined $ENV{GROK_SHAREDIR}
-        ? $ENV{GROK_SHAREDIR}
-        : dist_dir('grok')
-    ;
-    my $dir = catdir($share, 'Spec');
+    my ($self, $syn) = @_;
+    my $dir = catdir($self->{share_dir}, 'Spec');
 
     if ($syn =~ /^S\d+$/i) {
         my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
@@ -100,14 +127,14 @@ sub find_synopsis {
 }
 
 sub find_file {
-    my ($file) = @_;
+    my ($self, $file) = @_;
 
-    # TODO: do a grand search and render the found file
+    # TODO: do a grand search
     return ($file, 'App::Grok::Pod6');
 }
 
 sub render_file {
-    my ($file, $renderer) = @_;
+    my ($self, $file, $renderer) = @_;
     
     eval "require $renderer";
     die $@ if $@;
