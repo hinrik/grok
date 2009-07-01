@@ -1,4 +1,6 @@
 0.08
+    - Support xhtml output
+    - Depend on latest Perl6::Perldoc::To::Ansi
     - Fix pager execution on Win32. azawawi++
     - Depend on Win32::Console::ANSI on Win32 systems
 

@@ -49,10 +49,6 @@ sub get_options {
         'v|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
-    if ($opt{format} ne 'text' && $opt{format} ne 'ansi') {
-        die "Format '$opt{format}' is unsupported\n";
-    }
-
     die "Too few arguments\n" if !defined $opt{file} && !@ARGV;
 }
 
