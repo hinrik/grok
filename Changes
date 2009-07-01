@@ -1,4 +1,5 @@
 0.09
+    - Add some author tests (Pod, Perl::Critic, etc)
     - Detect whether a file contains Pod 5 or Pod 6
     - Add homepage and source repository to Makefile.PL
     - Refactor the code a bit and document public methods

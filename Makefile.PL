@@ -26,5 +26,6 @@ requires       ('Win32::Console::ANSI'     => '0') if $^O eq 'MSWin32';
 test_requires  ('Test::More'               => '0');
 test_requires  ('Test::Script'             => '0');
 tests_recursive();
+recursive_author_tests('xt');
 WriteAll();
 

@@ -23,6 +23,12 @@ t/04_targets/01_file.t
 t/04_targets/02_synopsis.t
 t_source/basic.pod
 t_source/basic5.pod
+xt/perlcriticrc
+xt/perlcriticrc_tests
+xt/perl_critic.t
+xt/perl_critic_tests.t
+xt/pod_coverage.t
+xt/pod.t
 share/Spec/S01-overview.pod
 share/Spec/S02-bits.pod
 share/Spec/S03-operators.pod
@@ -56,6 +62,7 @@ share/Spec/S32-setting-library/Rules.pod
 share/Spec/S32-setting-library/Str.pod
 share/Spec/S32-setting-library/Temporal.pod
 inc/Module/Install.pm
+inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
