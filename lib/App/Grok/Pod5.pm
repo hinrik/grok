@@ -17,7 +17,9 @@ sub render {
         ? 'Pod::Text::Color'
         : $format eq 'xhtml'
             ? 'Pod::Xhtml'
-            : 'Pod::Text'
+            : $format eq 'text'
+                ? 'Pod::Text'
+                : die "Unsupported format '$format'";
     ;
 
     eval "require $formatter";
@@ -37,6 +39,18 @@ sub render {
 =head1 NAME
 
 App::Grok::Pod5 - A Pod 5 backend for grok
+
+=head1 METHODS
+
+=head2 C<new>
+
+This is the constructor. It currently takes no arguments.
+
+=head2 C<render>
+
+Takes two arguments, a filename and the name of an output format. Returns
+a string containing the rendered document. It will C<die> if there is an
+error.
 
 =head1 AUTHOR
 

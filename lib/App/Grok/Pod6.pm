@@ -34,6 +34,18 @@ sub render {
 
 App::Grok::Pod6 - A Pod 6 backend for grok
 
+=head1 METHODS
+
+=head2 C<new>
+
+This is the constructor. It currently takes no arguments.
+
+=head2 C<render>
+
+Takes two arguments, a filename and the name of an output format. Returns
+a string containing the rendered document. It will C<die> if there is an
+error.
+
 =head1 AUTHOR
 
 Hinrik Örn Sigurðsson, L<hinrik.sig@gmail.com>

@@ -28,7 +28,7 @@ sub new {
 sub run {
     my ($self) = @_;
 
-    $self->get_options();
+    $self->_get_options();
 
     if ($opt{index}) {
         print $self->target_index();
@@ -46,11 +46,12 @@ sub run {
         print "$target\n";
     }
     else {
-        $self->render_file($target);
+        my $output = $self->render_file($target, $opt{format});
+        $self->_print($output);
     }
 }
 
-sub get_options {
+sub _get_options {
     my ($self) = @_;
 
     GetOptions(
@@ -110,7 +111,7 @@ sub find_target {
     my $target = $self->find_synopsis($arg);
     $target = $self->find_file($arg) if !defined $target;
 
-    die "Target '$arg' not recognized\n" if !$target;
+    return if !defined $target;
     return $target;
 }
 
@@ -146,20 +147,24 @@ sub find_file {
 }
 
 sub render_file {
-    my ($self, $file) = @_;
+    my ($self, $file, $format) = @_;
     
     my $renderer = $self->detect_source($file);
     eval "require $renderer";
     die $@ if $@;
-    my $pod = $renderer->new->render($file, $opt{format});
+    return $renderer->new->render($file, $format);
+}
+
+sub _print {
+    my ($self, $output) = @_;
 
     if ($opt{no_pager} || !is_interactive()) {
-        print $pod;
+        print $output;
     }
     else {
         my $pager = $Config{pager};
         my ($temp_fh, $temp) = tempfile(UNLINK => 1);
-        print $temp_fh $pod;
+        print $temp_fh $output;
         close $temp_fh;
 
         # $pager might contain options (e.g. "more /e") so we pass a string
@@ -177,6 +182,50 @@ sub render_file {
 =head1 NAME
 
 App::Grok - Does most of grok's heavy lifting
+
+=head1 DESCRIPTION
+
+This class provides the main functionality needed by grok. It has some
+methods you can use if you need to hook into grok.
+
+=head1 METHODS
+
+=head2 C<new>
+
+This is the constructor. It takes no arguments.
+
+=head2 C<run>
+
+If you call this method, it will look at the command line arguments in
+C<@ARGV> and act accordingly. This is basically what the L<C<grok>|grok>
+program does. Takes no arguments.
+
+=head2 C<target_index>
+
+Takes no arguments. Returns a list of all the targets known to C<grok>.
+
+=head2 C<detect_source>
+
+Takes a filename as an argument. Returns the name of the appropriate
+C<App::Grok::*> class to parse it. Returns nothing if the file doesn't contain
+any Pod.
+
+=head2 C<find_target>
+
+Takes a valid C<grok> target as an argument. If found, it will return a path
+to a matching file, otherwise it returns nothing.
+
+=head2 C<find_synopsis>
+
+Takes the name (or a substring of a name) of a Synopsis as an argument.
+Returns a path to a matching file if one is found, otherwise returns nothing.
+Note: this method is called by L<C<find_target>|/find_target>.
+
+=head2 C<render_file>
+
+Takes two arguments, a filename and the name of an output format. Returns
+a string containing the rendered document. It will C<die> if there is an
+error.
 
 =head1 AUTHOR
 
