@@ -46,7 +46,7 @@ sub get_options {
         'h|help'     => sub { pod2usage(1) },
         'l|only'     => \$opt{only},
         'T|no-pager' => \$opt{no_pager},
-        'v|version'  => sub { print "grok $VERSION\n"; exit },
+        'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
     die "Too few arguments\n" if !defined $opt{file} && !@ARGV;
