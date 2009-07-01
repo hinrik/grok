@@ -122,8 +122,11 @@ sub render_file {
         print $temp_fh $pod;
         close $temp_fh;
 
-        # $pager might be 'more /e' on Win32 so we must pass a string
-        system $pager . qq{ "$temp"};
+        # $pager might contain options (e.g. "more /e") so we pass a string
+        $^O eq 'MSWin32'
+            ? system $pager . qq{ "$temp"}
+            : system $pager . qq{ '$temp'}
+        ;
     }
 }
 
