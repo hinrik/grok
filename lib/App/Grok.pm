@@ -29,19 +29,16 @@ sub run {
     my ($self) = @_;
 
     $self->get_options();
-    my ($target, $renderer);
 
     if ($opt{index}) {
         print $self->target_index();
         return;
     }
 
-    if (defined $opt{file}) {
-        ($target, $renderer) = ($opt{file}, 'App::Grok::Pod6');
-    }
-    else {
-        ($target, $renderer) = $self->find_target($ARGV[0]);
-    }
+    my $target = defined $opt{file}
+        ? $opt{file}
+        : $self->find_target($ARGV[0])
+    ;
 
     die "No matching files found for target '$target'" if !-e $target;
 
@@ -49,7 +46,7 @@ sub run {
         print "$target\n";
     }
     else {
-        $self->render_file($target, $renderer);
+        $self->render_file($target);
     }
 }
 
@@ -66,7 +63,10 @@ sub get_options {
         'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
-    die "Too few arguments\n" if !$opt{index} && !defined $opt{file} && !@ARGV;
+    if (!$opt{index} && !defined $opt{file} && !@ARGV) {
+        warn "Too few arguments\n";
+        pod2usage();
+    }
 }
 
 sub target_index {
@@ -85,15 +85,33 @@ sub target_index {
     return join("\n", @index) . "\n";
 }
 
+sub detect_source {
+    my ($self, $file) = @_;
+
+    open my $handle, '<', $file or die "Can't open $file";
+    my $contents = do { local $/; scalar <$handle> };
+    close $handle;
+
+    my ($first_pod) = $contents =~ /(^=(?!encoding)\S+)/m;
+    return if !defined $first_pod; # no Pod found
+
+    if ($first_pod =~ /^=(?:pod|head\d+|over)$/
+            || $contents =~ /^=cut\b/m) {
+        return 'App::Grok::Pod5';
+    }
+    else {
+        return 'App::Grok::Pod6';
+    }
+}
+
 sub find_target {
     my ($self, $arg) = @_;
 
-    my ($target, $renderer);
-    ($target, $renderer) = $self->find_synopsis($arg);
-    ($target, $renderer) = $self->find_file($arg) if !defined $target;
+    my $target = $self->find_synopsis($arg);
+    $target = $self->find_file($arg) if !defined $target;
 
     die "Target '$arg' not recognized\n" if !$target;
-    return ($target, $renderer);
+    return $target;
 }
 
 sub find_synopsis {
@@ -105,13 +123,7 @@ sub find_synopsis {
         my $found = first { /$syn/i } @synopses;
         
         return if !defined $found;
-
-        if ($found =~ /^S26/) {
-            return (catfile($dir, $found), 'App::Grok::Pod6');
-        }
-        else {
-            return (catfile($dir, $found), 'App::Grok::Pod5');
-        }
+        return catfile($dir, $found);
     }
     elsif (my ($section) = $syn =~ /^S32-(\S+)$/i) {
         my $S32_dir = catdir($dir, 'S32-setting-library');
@@ -119,7 +131,7 @@ sub find_synopsis {
         my $found = first { /$section/i } @sections;
         
         if (defined $found) {
-            return (catfile($S32_dir, $found), 'App::Grok::Pod5');
+            return catfile($S32_dir, $found);
         }
     }
 
@@ -130,12 +142,13 @@ sub find_file {
     my ($self, $file) = @_;
 
     # TODO: do a grand search
-    return ($file, 'App::Grok::Pod6');
+    return $file;
 }
 
 sub render_file {
-    my ($self, $file, $renderer) = @_;
+    my ($self, $file) = @_;
     
+    my $renderer = $self->detect_source($file);
     eval "require $renderer";
     die $@ if $@;
     my $pod = $renderer->new->render($file, $opt{format});

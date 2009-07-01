@@ -5,7 +5,7 @@ SYNOPSIS
     grok <options> <target>
 
      Options:
-       -F FILE, --file=FILE         A file to read Pod 6 from
+       -F FILE, --file=FILE         A file to read Pod from
        -f FORMAT, --format=FORMAT   The output format, ansi/text/xhtml
        -h, --help                   Print this help message
        -i, --index                  Print index of things grok knows about
@@ -13,11 +13,11 @@ SYNOPSIS
        -T, --no-pager               Send output to STDOUT without any pager
        -V, --version                Print version information
 
-     If you don't supply the -F option, you need to supply a target.
+     If you don't supply the -F or -i options, you need to supply a target.
      The following targets are recognized:
 
        * A synopsis (e.g. 's02', 's02-bits', 's32-rules')
-       * A path to a file containing Pod 6
+       * A path to a file containing Pod
 
 DESCRIPTION
     This little application is intended to be a "perldoc" for Perl 6.

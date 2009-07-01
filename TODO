@@ -4,8 +4,6 @@ Features
  * Add switch to display the raw pod output. perldoc uses -u (unformatted)
  * Add -m switch to display module's file in its entirety like perldoc
  * Think about i18n, add -L for lang code like perldoc
- * Somehow detect whether a file is Pod 5 or Pod 6. A simple test might
-   be to look for =begin (Pod 6) and =cut (Pod 5)
  * Borrow the S32 function lookup feature (grok -f FUNCTION) from
    Padre::Plugin::Perl6
 
