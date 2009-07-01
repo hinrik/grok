@@ -1,4 +1,4 @@
-0.09
+0.09 Wed Jul  1 17:05:31 GMT 2009
     - Add some author tests (Pod, Perl::Critic, etc)
     - Detect whether a file contains Pod 5 or Pod 6
     - Add homepage and source repository to Makefile.PL
