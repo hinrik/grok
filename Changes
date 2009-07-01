@@ -1,4 +1,4 @@
-0.08
+0.08 Wed Jul  1 14:14:10 GMT 2009
     - Add -i/--index to list known targets
     - Rename -v (--version) option to -V
     - Support xhtml output, depend on Pod::Xhtml
