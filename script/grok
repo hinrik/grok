@@ -1,6 +1,9 @@
 #!/usr/bin/env perl
 
 package grok;
+use strict;
+use warnings;
+
 use App::Grok;
 my $grok = App::Grok->new();
 $grok->run();

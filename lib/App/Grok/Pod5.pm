@@ -29,6 +29,7 @@ sub render {
     open my $out_fh, '>', \$pod or die "Can't open output filehandle: $!";
     binmode $out_fh, ':utf8';
     $formatter->new->parse_from_file($file, $out_fh);
+    close $out_fh;
     return $pod;
 }
 

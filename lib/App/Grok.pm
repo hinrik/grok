@@ -49,6 +49,8 @@ sub run {
         my $output = $self->render_file($target, $opt{format});
         $self->_print($output);
     }
+
+    return;
 }
 
 sub _get_options {
@@ -68,6 +70,8 @@ sub _get_options {
         warn "Too few arguments\n";
         pod2usage();
     }
+
+    return;
 }
 
 sub target_index {
@@ -90,7 +94,7 @@ sub detect_source {
     my ($self, $file) = @_;
 
     open my $handle, '<', $file or die "Can't open $file";
-    my $contents = do { local $/; scalar <$handle> };
+    my $contents = do { local $/ = undef; scalar <$handle> };
     close $handle;
 
     my ($first_pod) = $contents =~ /(^=(?!encoding)\S+)/m;
@@ -109,7 +113,7 @@ sub find_target {
     my ($self, $arg) = @_;
 
     my $target = $self->find_synopsis($arg);
-    $target = $self->find_file($arg) if !defined $target;
+    $target = $self->find_module_or_program($arg) if !defined $target;
 
     return if !defined $target;
     return $target;
@@ -139,7 +143,7 @@ sub find_synopsis {
     return;
 }
 
-sub find_file {
+sub find_module_or_program {
     my ($self, $file) = @_;
 
     # TODO: do a grand search
@@ -173,6 +177,8 @@ sub _print {
             : system $pager . qq{ '$temp'}
         ;
     }
+
+    return;
 }
 
 1;
@@ -220,6 +226,11 @@ to a matching file, otherwise it returns nothing.
 Takes the name (or a substring of a name) of a Synopsis as an argument.
 Returns a path to a matching file if one is found, otherwise returns nothing.
 Note: this method is called by L<C<find_target>|/find_target>.
+
+=head2 C<find_module_or_program>
+
+Takes the name of a module or a program. Returns a path to a matching file
+if one is found, otherwise returns nothing.
 
 =head2 C<render_file>
 
