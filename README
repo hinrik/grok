@@ -31,8 +31,9 @@ DESCRIPTION
 
 CAVEATS
   Limitations of "Perl6::Perldoc"
-    Long lines are not wrapped to fit your terminal. Whitespace in
-    paragraphs is preserved, counter to the spec.
+    Long lines are not wrapped to fit your terminal.
+
+    Extraneous whitespace in paragraphs is preserved, counter to the spec.
 
     Formatting codes using french quotes ("C«»") aren't parsed correctly, so
     they are rendered verbatim.
