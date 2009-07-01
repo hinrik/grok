@@ -40,7 +40,7 @@ sub run {
         : $self->find_target($ARGV[0])
     ;
 
-    die "No matching files found for target '$target'" if !-e $target;
+    die "No matching files found for target '$target'\n" if !-e $target;
 
     if ($opt{only}) {
         print "$target\n";

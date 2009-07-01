@@ -19,7 +19,7 @@ sub render {
             ? 'Pod::Xhtml'
             : $format eq 'text'
                 ? 'Pod::Text'
-                : die "Unsupported format '$format'";
+                : die __PACKAGE__ " doesn't support the '$format' format";
     ;
 
     eval "require $formatter";
