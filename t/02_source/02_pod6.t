@@ -7,8 +7,8 @@ use App::Grok::Pod6;
 my $pod = catfile('t_source', 'basic.pod');
 ok(my $render = App::Grok::Pod6->new(), 'Constructed renderer object');
 
-my $text = $render->render($pod, 'text');
-my $ansi = $render->render($pod, 'ansi');
+my $text = $render->render_file($pod, 'text');
+my $ansi = $render->render_file($pod, 'ansi');
 
 ok(length $text, 'Got text output');
 ok(length $ansi, 'Got colored text output');

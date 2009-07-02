@@ -17,7 +17,7 @@ sub new {
     return bless \%self, $package;
 }
 
-sub render {
+sub render_file {
     my ($self, $file, $format) = @_;
 
     my $form = $formatter{$format};
@@ -31,6 +31,15 @@ sub render {
     $form->new->parse_from_file($file, $out_fh);
     close $out_fh;
     return $pod;
+}
+
+sub render_string {
+    my ($self, $string, $format) = @_;
+
+    open my $handle, '<', \$string or die "Can't open input filehandle: $!";
+    my $result = $self->render_file($handle, $format);
+    close $handle;
+    return $result;
 }
 
 1;
@@ -47,9 +56,15 @@ App::Grok::Pod5 - A Pod 5 backend for grok
 
 This is the constructor. It currently takes no arguments.
 
-=head2 C<render>
+=head2 C<render_file>
 
 Takes two arguments, a filename and the name of an output format. Returns
+a string containing the rendered document. It will C<die> if there is an
+error.
+
+=head2 C<render_string>
+
+Takes two arguments, a string and the name of an output format. Returns
 a string containing the rendered document. It will C<die> if there is an
 error.
 
