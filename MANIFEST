@@ -14,7 +14,7 @@ t/01_compile.t
 t/02_source/01_pod5.t
 t/02_source/02_pod6.t
 t/03_opts/01_file.t
-t/03_opts/02_format.t
+t/03_opts/02_output.t
 t/03_opts/03_help.t
 t/03_opts/04_version.t
 t/03_opts/05_no_pager.t

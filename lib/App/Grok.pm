@@ -46,7 +46,7 @@ sub run {
         print "$target\n";
     }
     else {
-        my $output = $self->render_file($target, $opt{format});
+        my $output = $self->render_file($target, $opt{output});
         $self->_print($output);
     }
 
@@ -58,16 +58,16 @@ sub _get_options {
 
     GetOptions(
         'F|file=s'      => \$opt{file},
-        'f|format=s'    => \($opt{format} = 'ansi'),
         'h|help'        => sub { pod2usage(1) },
         'i|index'       => \$opt{index},
         'l|only'        => \$opt{only},
+        'o|output=s'    => \($opt{output} = 'ansi'),
         'T|no-pager'    => \$opt{no_pager},
         'u|unformatted' => \$opt{unformatted},
         'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
-    $opt{format} = 'pod' if $opt{unformatted};
+    $opt{output} = 'pod' if $opt{unformatted};
 
     if (!$opt{index} && !defined $opt{file} && !@ARGV) {
         warn "Too few arguments\n";
@@ -154,12 +154,12 @@ sub find_module_or_program {
 }
 
 sub render_file {
-    my ($self, $file, $format) = @_;
+    my ($self, $file, $output) = @_;
     
     my $renderer = $self->detect_source($file);
     eval "require $renderer";
     die $@ if $@;
-    return $renderer->new->render($file, $format);
+    return $renderer->new->render($file, $output);
 }
 
 sub _print {

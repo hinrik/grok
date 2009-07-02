@@ -1,5 +1,6 @@
 0.10
     - Add 'pod' output format for Pod 5, and u-/--unformatted
+    - Rename -f/--format to -o/--output like perldoc(1)
 
 0.09 Wed Jul  1 17:05:31 GMT 2009
     - Add some author tests (Pod, Perl::Critic, etc)
