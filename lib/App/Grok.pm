@@ -57,14 +57,17 @@ sub _get_options {
     my ($self) = @_;
 
     GetOptions(
-        'F|file=s'   => \$opt{file},
-        'f|format=s' => \($opt{format} = 'ansi'),
-        'h|help'     => sub { pod2usage(1) },
-        'i|index'    => \$opt{index},
-        'l|only'     => \$opt{only},
-        'T|no-pager' => \$opt{no_pager},
+        'F|file=s'      => \$opt{file},
+        'f|format=s'    => \($opt{format} = 'ansi'),
+        'h|help'        => sub { pod2usage(1) },
+        'i|index'       => \$opt{index},
+        'l|only'        => \$opt{only},
+        'T|no-pager'    => \$opt{no_pager},
+        'u|unformatted' => \$opt{unformatted},
         'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
+
+    $opt{format} = 'pod' if $opt{unformatted};
 
     if (!$opt{index} && !defined $opt{file} && !@ARGV) {
         warn "Too few arguments\n";

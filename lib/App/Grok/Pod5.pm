@@ -5,6 +5,13 @@ use warnings;
 
 our $VERSION = '0.09';
 
+my %formatter = (
+    text  => 'Pod::Text',
+    ansi  => 'Pod::Text::Color',
+    xhtml => 'Pod::Xhtml',
+    pod   => 'Pod::Perldoc::ToPod',
+);
+
 sub new {
     my ($package, %self) = @_;
     return bless \%self, $package;
@@ -13,22 +20,15 @@ sub new {
 sub render {
     my ($self, $file, $format) = @_;
 
-    my $formatter = $format eq 'ansi'
-        ? 'Pod::Text::Color'
-        : $format eq 'xhtml'
-            ? 'Pod::Xhtml'
-            : $format eq 'text'
-                ? 'Pod::Text'
-                : die __PACKAGE__ . " doesn't support the '$format' format";
-    ;
-
-    eval "require $formatter";
+    my $form = $formatter{$format};
+    die __PACKAGE__ . " doesn't support the '$format' format" if !defined $form;
+    eval "require $form";
     die $@ if $@;
 
     my $pod = '';
     open my $out_fh, '>', \$pod or die "Can't open output filehandle: $!";
-    binmode $out_fh, ':utf8';
-    $formatter->new->parse_from_file($file, $out_fh);
+    binmode $out_fh, ':utf8' if $form ne 'Pod::Perldoc::ToPod';
+    $form->new->parse_from_file($file, $out_fh);
     close $out_fh;
     return $pod;
 }

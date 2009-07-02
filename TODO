@@ -5,7 +5,6 @@ Features
    C<grok '[*]'> or C<grok -s '[*]'> to find out about syntax
  * Look at proto and other installation software for Perl 6 and see if we can
    find a way to look up module files, for C<grok Pod::Parser>, etc
- * Add switch to display the raw pod output. perldoc uses -u (unformatted)
  * Add -m switch to display module's file in its entirety like perldoc
  * Think about i18n, add -L for lang code like perldoc
  * Maybe use Pod::Man to allow --format=man
@@ -19,3 +18,4 @@ Perl6::Perldoc-related
  * Figure out how to wrap lines to $COLUMNS
  * Maybe write an nroff renderer (for --format=man)
  * Modify Perl6::Perldoc::To::Ansi to use the same coloring as Pod::Text::Color
+ * Allow passing through the Pod verbatim (for --unformatted / --format=pod)
