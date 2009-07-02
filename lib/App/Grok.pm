@@ -31,7 +31,7 @@ sub run {
     $self->_get_options();
 
     if ($opt{index}) {
-        print $self->target_index();
+        print join("\n", $self->target_index()) . "\n";
         return;
     }
 
@@ -90,7 +90,7 @@ sub target_index {
     push @index, map { "S32-$_" } @sections;
 
     s/\.pod$// for @index;
-    return join("\n", @index) . "\n";
+    return @index;
 }
 
 sub detect_source {
