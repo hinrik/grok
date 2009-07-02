@@ -9,8 +9,6 @@ Features
  * Think about i18n, add -L for lang code like perldoc
  * Maybe use Pod::Man to allow --format=man
  * Start porting/bundling third-party docs
- * Borrow the S32 function lookup feature (C<grok -f FUNCTION>) from
-   Padre::Plugin::Perl6
 
 
 Perl6::Perldoc-related
