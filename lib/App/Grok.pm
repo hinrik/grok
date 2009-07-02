@@ -225,12 +225,13 @@ to a matching file, otherwise it returns nothing.
 
 Takes the name (or a substring of a name) of a Synopsis as an argument.
 Returns a path to a matching file if one is found, otherwise returns nothing.
-Note: this method is called by L<C<find_target>|/find_target>.
+B<Note:> this method is called by L<C<find_target>|/find_target>.
 
 =head2 C<find_module_or_program>
 
 Takes the name of a module or a program. Returns a path to a matching file
-if one is found, otherwise returns nothing.
+if one is found, otherwise returns nothing. B<Note:> this doesn't do anything
+yet.
 
 =head2 C<render_file>
 
