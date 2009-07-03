@@ -1,3 +1,6 @@
+0.11
+    - Use PAGER environment variable if set
+
 0.10 Thu Jul  2 16:49:16 GMT 2009
     - Add 'pod' output format for Pod 5, and u-/--unformatted
     - Rename -f/--format to -o/--output like perldoc(1)
