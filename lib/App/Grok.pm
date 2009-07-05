@@ -255,7 +255,7 @@ sub _print {
         print $output;
     }
     else {
-        my $pager = $Config{pager};
+        my $pager = defined $ENV{PAGER} ? $ENV{PAGER} : $Config{pager};
         my ($temp_fh, $temp) = tempfile(UNLINK => 1);
         print $temp_fh $output;
         close $temp_fh;

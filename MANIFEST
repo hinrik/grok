@@ -63,6 +63,7 @@ share/Spec/S32-setting-library/Rules.pod
 share/Spec/S32-setting-library/Str.pod
 share/Spec/S32-setting-library/Temporal.pod
 inc/Module/Install.pm
+inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
