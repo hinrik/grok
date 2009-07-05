@@ -190,14 +190,7 @@ sub find_synopsis {
     my ($self, $syn) = @_;
     my $dir = catdir($self->{share_dir}, 'Spec');
 
-    if ($syn =~ /^S\d+$/i) {
-        my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
-        my $found = first { /$syn/i } @synopses;
-        
-        return if !defined $found;
-        return catfile($dir, $found);
-    }
-    elsif (my ($section) = $syn =~ /^S32-(\S+)$/i) {
+    if (my ($section) = $syn =~ /^S32-(\S+)$/i) {
         my $S32_dir = catdir($dir, 'S32-setting-library');
         my @sections = map { (splitpath($_))[2] } glob "$S32_dir/*.pod";
         my $found = first { /$section/i } @sections;
@@ -205,6 +198,13 @@ sub find_synopsis {
         if (defined $found) {
             return catfile($S32_dir, $found);
         }
+    }
+    elsif ($syn =~ /^S\d+/i) {
+        my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
+        my $found = first { /\Q$syn/i } @synopses;
+        
+        return if !defined $found;
+        return catfile($dir, $found);
     }
 
     return;
