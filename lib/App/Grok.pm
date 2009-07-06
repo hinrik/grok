@@ -152,7 +152,7 @@ sub target_index {
     push @index, map { "S32-$_" } @sections;
 
     # functions from synopsis 29
-    push @index, keys %{ $self->read_functions() };
+    push @index, sort keys %{ $self->read_functions() };
 
     return @index;
 }

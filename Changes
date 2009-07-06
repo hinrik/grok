@@ -1,6 +1,8 @@
 0.11
     - Use PAGER environment variable if set
     - Fix bug which was causing it to only accept 's02' but not 's02-bits'
+    - Make target_index (and, by extension, --index) return function list
+      in sorted order
 
 0.10 Thu Jul  2 16:49:16 GMT 2009
     - Add 'pod' output format for Pod 5, and u-/--unformatted
