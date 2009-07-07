@@ -1,3 +1,4 @@
+
 =encoding utf8
 
 =head1 TITLE
@@ -12,8 +13,8 @@ Synopsis 4: Blocks and Statements
 
     Created: 19 Aug 2004
 
-    Last Modified: 16 Jun 2009
-    Version: 80
+    Last Modified: 3 Jul 2009
+    Version: 81
 
 This document summarizes Apocalypse 4, which covers the block and
 statement syntax of Perl.
@@ -94,7 +95,7 @@ declared "C<my $x>".
 As in Perl 5, "C<our $foo>" introduces a lexically scoped alias for
 a variable in the current package.
 
-The new C<constant> declarator introduces a lexically scoped name
+The new C<constant> declarator introduces an "our"-scoped name
 for a compile-time constant, either a variable or named value, which
 may be initialized with a pseudo-assignment:
 
@@ -150,7 +151,7 @@ this still works:
 
     my $x = [
         sub { 3 },  # this comma is not optional
-        sub { 3 }   # the statement won't terminate here 
+        sub { 3 }   # the statement won't terminate here
     ];
 
 However, a hash composer may never occur at the end of a line.  If the
@@ -521,7 +522,7 @@ the bare block is not a do-once.  Instead C<do {...}> is the do-once
 loop (which is another reason you can't put a statement
 modifier on it; use C<repeat> for a test-at-the-end loop).
 
-For any statement, prefixing with a C<do> allows you to 
+For any statement, prefixing with a C<do> allows you to
 return the value of that statement and use it in an expression:
 
     $x = do if $a { $b } else { $c };
@@ -573,23 +574,23 @@ block C<CONTEXT::> refers to the scope surrounding the block.  But unlike
 an explicit call, C<CALLER::> doesn't count it as a routine boundary.
 
 If you wish to return a closure from a function, you must use an
-explicit prefix such as C<return> or C<sub> or C<< -> >>.  
+explicit prefix such as C<return> or C<sub> or C<< -> >>.
 
-	sub f1
-	{
-		# lots of stuff ...
-		{ say "I'm a closure." }
-	}
-	
-	my $x1= f1;  # fall-off return is result of the say, not the closure.
-	
-	sub f2
-	{
-		# lots of stuff ...
-		return { say "I'm a closure." }
-	}
-	
-	my $x2= f2;  # returns a Block object.
+    sub f1
+    {
+        # lots of stuff ...
+        { say "I'm a closure." }
+    }
+
+    my $x1= f1;  # fall-off return is result of the say, not the closure.
+
+    sub f2
+    {
+        # lots of stuff ...
+        return { say "I'm a closure." }
+    }
+
+    my $x2= f2;  # returns a Block object.
 
 Use of a placeholder parameter in statement-level blocks triggers a
 syntax error, because the parameter is not out front where it can be
@@ -700,11 +701,11 @@ which can't see the caller's lexical scope except through the CALLER::
 pseudo package.  For example, Perl forces generic C<eq> to coerce to
 string comparison, like this:
 
-    proto infix:<eq> (Any $a, Any $b)	{ lift ~$a eq ~$b }		# user's eq, user's ~
-    multi infix:<eq> (Whatever, Any $b)	{ -> $a { lift $a eq $b } }	# user's eq
-    multi infix:<eq> (Any $a, Whatever)	{ -> $b { lift $a eq $b } }	# user's eq
-    multi infix:<eq> (&f:($), Any $b)	{ -> $a { lift f($a) eq $b } }	# user's eq
-    multi infix:<eq> (Str $a, Str $b)	{ !Str::leg($a, $b) }		# primitive leg, primitive !
+    proto infix:<eq> (Any $a, Any $b)   { lift ~$a eq ~$b }            # user's eq, user's ~
+    multi infix:<eq> (Whatever, Any $b) { -> $a { lift $a eq $b } }    # user's eq
+    multi infix:<eq> (Any $a, Whatever) { -> $b { lift $a eq $b } }    # user's eq
+    multi infix:<eq> (&f:($), Any $b)   { -> $a { lift f($a) eq $b } } # user's eq
+    multi infix:<eq> (Str $a, Str $b)   { !Str::leg($a, $b) }          # primitive leg, primitive !
 
 
 Note that in each piece of lifted code there are references to
@@ -1116,7 +1117,7 @@ exceptions and exit values:
       START {...}*      on first ever execution, once per closure clone
 
       ENTER {...}*      at every block entry time, repeats on loop blocks.
-      LEAVE {...}       at every block exit time 
+      LEAVE {...}       at every block exit time
        KEEP {...}       at every successful block exit, part of LEAVE queue
        UNDO {...}       at every unsuccessful block exit, part of LEAVE queue
 
@@ -1134,6 +1135,23 @@ Those marked with a C<*> can also be used within an expression:
 
     my $compiletime = BEGIN { localtime };
     our $temphandle = START { maketemp() };
+
+As with other statement prefixes, these value-producing constructs
+may be placed in front of either a block or a statement:
+
+    my $compiletime = BEGIN localtime;
+    our $temphandle = START maketemp();
+
+This can be particularly useful to expose a lexically scoped
+declaration to the surrounding context.  Hence these declare the same
+variables with the same scope as the preceding example, but run the
+statements as a whole at the indicated time:
+
+    BEGIN my $compiletime = localtime;
+    START our $temphandle = maketemp();
+
+(Note, however, that the value of a variable calculated at compile
+time may not persist under run-time cloning of any surrounding closure.)
 
 Code that is generated at run time can still fire off C<CHECK>
 and C<INIT> blocks, though of course those blocks can't do things that
@@ -1253,9 +1271,9 @@ Note that the parser cannot intuit how many arguments a list operator
 is taking, so if you mean 0 arguments, you must parenthesize the
 argument list to force the block to appear after a term:
 
-    if caller {...}	# WRONG, parsed as caller({...})
-    if caller() {...}	# okay
-    if (caller) {...}	# okay
+    if caller {...}    # WRONG, parsed as caller({...})
+    if caller() {...}  # okay
+    if (caller) {...}  # okay
 
 Note that common idioms work as expected though:
 
@@ -1449,7 +1467,7 @@ they perform a C<:=> binding to the lexical symbol at clone time
 possibly deferred.)
 
     sub foo {
-	# conceptual cloning happens to both blocks below
+        # conceptual cloning happens to both blocks below
         my $x = 1;
         my sub bar { print $x }         # already conceptualy cloned, but can be lazily deferred
         my &baz := { bar(); print $x }; # block is cloned immediately, forcing cloning of bar

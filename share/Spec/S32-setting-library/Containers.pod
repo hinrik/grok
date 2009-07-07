@@ -24,7 +24,7 @@ DRAFT: Synopsis 32: Setting Library - Containers.pod
 
 The document is a draft.
 
-If you read the HTML version, it is generated from the pod in the pugs 
+If you read the HTML version, it is generated from the pod in the pugs
 repository under /docs/Perl6/Spec/S32-setting-library/Containers.pod so edit it there in
 the SVN repository if you would like to make changes.
 
@@ -514,9 +514,9 @@ The new array to be returned contains nothing but aliases for
 the old array's elements; however, you can use this to get
 any of three different semantic behaviors:
 
-    @a.=rotate		# @a is rotated in place
-    @b = @a.rotate	# @b contains copied elements of rotated @a
-    @b := @a.rotate	# @b contains aliased elements of rotated @a
+    @a.=rotate       # @a is rotated in place
+    @b = @a.rotate   # @b contains copied elements of rotated @a
+    @b := @a.rotate  # @b contains aliased elements of rotated @a
 
 If additional rotations are specified via the slurpy, they are
 applied to subdimensions of multidimensional arrays.  (To perform
@@ -656,14 +656,14 @@ property instead.
  our Junction multi method any( %hash: ) is export
 
 Returns a junction with all the keys of the hash C<|>-ed together. The
-junction will only match against another value if at least one of the 
+junction will only match against another value if at least one of the
 keys in the hash matches.
 
 =item all
 
  our Junction multi method all( %hash: ) is export
 
-Returns a junction with all the keys of the hash C<&>-ed together. The 
+Returns a junction with all the keys of the hash C<&>-ed together. The
 junction will only match against another value if all of the keys in the hash
 match.
 
@@ -673,13 +673,13 @@ match.
 
 Returns a junction with all the keys of the hash C<^>-ed together. The
 junction will only match against another value if exactly one of the keys
-in the hash matches.  
+in the hash matches.
 
 =item none
 
  our Junction multi method none( %hash: ) is export
 
-Returns a junction which will only match against another value if none of 
+Returns a junction which will only match against another value if none of
 the keys in the hash matches.
 
 =item invert
@@ -700,7 +700,7 @@ Like hash assignment insofar as it accepts either C<Pair> objects or
 alternating keys and values; however, unlike assignment, when
 a duplicate key is detected, coerces the colliding entry's value to an
 array and pushes the Pair's value onto that array.  Hence to invert
-a hash containing duplicate values without losing (associative) information, 
+a hash containing duplicate values without losing (associative) information,
 say:
 
     %out.push(%in.invert)
@@ -718,8 +718,8 @@ to the original hash.
 
 =head1 Classes
 
-This documents Buf, List, Seq, Range, Set, Bag, Junction, Array, Hash, KeyHash, KeySet, 
-KeyBag, Pair, and Mapping.  
+This documents Buf, List, Seq, Range, Set, Bag, Junction, Array, Hash, KeyHash, KeySet,
+KeyBag, Pair, and Mapping.
 
 =head2 Seq
 
@@ -728,11 +728,11 @@ KeyBag, Pair, and Mapping.
 =head2 Range
 
     class Range does Positional {
-	method from() {...}
-	method to() {...}
-	method min() {...}
-	method max() {...}
-	method List minmax() {...}
+        method from() {...}
+        method to() {...}
+        method min() {...}
+        method max() {...}
+        method List minmax() {...}
     }
 
 =head2 Buf
@@ -757,13 +757,37 @@ To explicit request a C<Buf> of a specific size, you can use
     Buf.new(127, :size(16))     # returns a buf16
     Buf.new(1024, :size(8))     # dies, because 1024 >= 2**8
 
+Subtypes with additional constraints like C<utf8> (which only allows valid
+UTF-8 byte sequences) exist and provide similar constructors. See
+L<S02/Built-In Data Types>.
+
 =head3 Methods
 
 =item decode
 
     our Str method decode($encoding = $?ENC, $nf = $?NF)
 
-Decode the C<Buf> into a C<Str>
+Decode the C<Buf> into a C<Str>. For subtypes that know their encoding (like
+C<utf8>, C<utf16>) the C<$encoding> parameter defaults to their intrisic
+encoding instead.
+
+=head3 C<Buf> Operators
+
+Two C<Buf> objects of the same bit size can be compared with the same
+operators as strings (in particular C<eq>, C<lt>, C<le>, C<gt>, C<ge>,
+C<ne> and C<leg>), but actually compares the stored integers, not
+characters. Concatenating two compatible C<Buf>s produces an object of the
+most specific type possible, for example C<buf8.new() ~ utf8.new()> results in
+a C<buf8> object.
+
+Comparing or concatenating two C<Buf> objects of different bit sizes,
+or a C<Buf> that doesn't know its encoding with a C<Str> throws an exception.
+
+Likewising coercing an encoding-unaware C<Buf> to C<Str> dies.
+
+[Conjecture: The behaviour of encoding-aware C<Buf> objects on string
+operators is intentially not defined yet, because I have no idea what
+implications on speed and usage they might have --moritz].
 
 =head2 Pair
 

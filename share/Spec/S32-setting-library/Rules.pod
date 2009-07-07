@@ -20,7 +20,7 @@ DRAFT: Synopsis 32: Setting Library - Rules
 
 The document is a draft.
 
-If you read the HTML version, it is generated from the pod in the pugs 
+If you read the HTML version, it is generated from the pod in the pugs
 repository under /docs/Perl6/Spec/S32-setting-library/Exception.pod so edit it there in
 the SVN repository if you would like to make changes.
 
@@ -28,24 +28,24 @@ the SVN repository if you would like to make changes.
 
 =head2 Regex
 
-role	Regex {...}
+    role Regex {...}
 
 =head2 Match
 
-role	Match {
-	method Int from()  {...}
-	method Int to()    {...}
-	method Int chars() {...}
-	method     orig()  {...}
-	method     Str()   {...}
-}
+    role Match {
+        method Int from()  {...}
+        method Int to()    {...}
+        method Int chars() {...}
+        method     orig()  {...}
+        method     Str()   {...}
+    }
 
 =head2 Cursor
 
-role	Cursor {
-	method Int pos()  {...}
-	method     orig() {...}
-}
+    role Cursor {
+        method Int pos()  {...}
+        method     orig() {...}
+    }
 
 =head2 Grammar
 

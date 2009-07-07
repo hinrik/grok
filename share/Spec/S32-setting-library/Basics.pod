@@ -24,7 +24,7 @@ DRAFT: Synopsis 32: Setting Library - Basics
 
 The document is a draft.
 
-If you read the HTML version, it is generated from the pod in the pugs 
+If you read the HTML version, it is generated from the pod in the pugs
 repository under /docs/Perl6/Spec/S32-setting-library/Basics.pod so edit it there in
 the SVN repository if you would like to make changes.
 
@@ -34,7 +34,7 @@ the SVN repository if you would like to make changes.
 
 The following are defined in the C<Object> role:
 
- role	Object {
+ role Object {
      our Bool multi method defined ($self:) is export {...}
      our Bool multi method defined ($self: ::role ) is export {...}
 
@@ -85,7 +85,7 @@ declared.
 
      method true() {...}
 
-XXX Copied from S02 -- should it be deleted from there?  
+XXX Copied from S02 -- should it be deleted from there?
 
 The definition of C<.Bool> for the most ancestral type (that is, the
 C<Object> type) is equivalent to C<.defined>.  Since type objects are
@@ -100,7 +100,7 @@ instantiate an C<Object> it would be considered defined, and thus true.
 
 The following are defined in the C<Any> role:
 
- role	Any does Object does Pattern {
+ role Any does Object does Pattern {
      our Bool multi sub eqv (Ordering @by, $a, $b) {...}
      our Bool multi sub eqv (Ordering $by = &infix:<eqv>, $a, $b) {...}
 
@@ -173,7 +173,7 @@ Returns C<True> if and only if C<$self> conforms to type C<$type>.
 
  our Bool multi method isa ($self:, $type)
 
-Returns C<True> if a the invocant an instance of class C<$type>, or 
+Returns C<True> if a the invocant an instance of class C<$type>, or
 of a subset type or a derived class (through inheritance) of C<$type>.
 
 =item perl
@@ -194,18 +194,18 @@ C<Synopsis 16: IPC / IO / Signals> for details.
 
 =head2 Pattern
 
- role	Pattern {
+ role Pattern {
      method ACCEPTS($self:, $other) {...}
      method REJECTS($self:, $other) {...}
  }
 
 =item ACCEPTS
 
-Used in smartmatching; see S03.  
+Used in smartmatching; see S03.
 
 =item REJECTS
 
-Used in smartmatching; see S03.  
+Used in smartmatching; see S03.
 
 =head2 Scalar
 
@@ -235,7 +235,7 @@ confusion with the value C<undef> (which is always 0-ary now).
 
 =item VAR
 
-This is not really a method, but some kind of macro.  See L<S12> for details.  
+This is not really a method, but some kind of macro.  See L<S12> for details.
 
 =back
 

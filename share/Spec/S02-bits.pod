@@ -1,3 +1,4 @@
+
 =encoding utf8
 
 =head1 TITLE
@@ -377,7 +378,7 @@ be written in any of these forms:
 
     $x\         # comment
                 # inside unspace
-    ++          # (but without the optional postfix dot) 
+    ++          # (but without the optional postfix dot)
 
     $x\#『      comment
                 more comment
@@ -416,7 +417,7 @@ will always be interpreted as
 
 but never as
 
-    foo.method  
+    foo.method
 
 Use some variant of
 
@@ -1185,7 +1186,7 @@ type on its left. Parametric types are named using square brackets, so:
 
 actually means:
 
-    my Hash:of(Array:of(Recipe)) %book; 
+    my Hash:of(Array:of(Recipe)) %book;
 
 Because the actual variable can be hard to find when complex types are
 specified, there is a postfix form as well:
@@ -1601,7 +1602,7 @@ hash, all named arguments.
 
 All prefix sigil operators accept one positional argument, evaluated in
 item context as a rvalue.  They can interpolate in strings if called with
-parentheses.  The special syntax form C<$()> translates into C<$( $.ast // Str($/) )> 
+parentheses.  The special syntax form C<$()> translates into C<$( $.ast // Str($/) )>
 to operate on the current match object; similarly C<@()> and C<%()> can
 extract positional and named submatches.
 
@@ -1761,7 +1762,7 @@ elements, then the second elements, etc.  For more on C<sort> see S29.
 Many of the special variables of Perl 5 are going away.  Those that
 apply to some object such as a filehandle will instead be attributes
 of the appropriate object.  Those that are truly global will have
-global alphabetic names, such as C<$*PID> or C<@*ARGS>. 
+global alphabetic names, such as C<$*PID> or C<@*ARGS>.
 
 =item *
 
@@ -2416,8 +2417,8 @@ An identifier may be extended with multiple named identifier
 extensions, in which case the names matter but their order does not.
 These name the same module:
 
-    use ThatModule:ver<2.7.18.28.18>:auth<Somebody>
     use ThatModule:auth<Somebody>:ver<2.7.18.28.18>
+    use ThatModule:ver<2.7.18.28.18>:auth<Somebody>
 
 Adverbial syntax will be described more fully later.
 
@@ -3092,11 +3093,11 @@ a single character:
 
 You may also put one or more decimal numbers inside the square brackets:
 
-    "\c[13,10]"	# CRLF
+    "\c[13,10]" # CRLF
 
 Any single decimal number may omit the brackets:
 
-    "\c8"	# backspace
+    "\c8" # backspace
 
 (Within a regex you may also use C<\C> to match a character that is
 not the specified character.)

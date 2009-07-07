@@ -1,3 +1,4 @@
+
 =encoding utf8
 
 =head1 TITLE
@@ -25,7 +26,7 @@ long time, and we think the popular term "regex" is in the process of
 becoming a technical term with a precise meaning of: "something you do
 pattern matching with, kinda like a regular expression".  On the other
 hand, one of the purposes of the redesign is to make portions of
-our patterns more amenable to analysis under traditional regular 
+our patterns more amenable to analysis under traditional regular
 expression and parser semantics, and that involves making careful
 distinctions between which parts of our patterns and grammars are
 to be treated as declarative, and which parts as procedural.
@@ -725,8 +726,8 @@ The C<:dba("doing business as")> adverb may be used to set up a more informative
 what the following code is trying to  parse:
 
     token postfix:sym<[ ]> {
-	:dba('array subscript')
-	'[' ~ ']' <expression>
+        :dba('array subscript')
+        '[' ~ ']' <expression>
     }
 
 Then instead of getting a message like:
@@ -1108,12 +1109,12 @@ ordinary "quote words" array literal.
 
     < adam & eve >   # equivalent to [ 'adam' | '&' | 'eve' ]
 
-Note that the space before the ending > is optional and therefore 
+Note that the space before the ending > is optional and therefore
 < adam & eve> would be acceptable.
 
 =item *
 
-A leading alphabetic character means it's a capturing grammatical 
+A leading alphabetic character means it's a capturing grammatical
 assertion (i.e. a subrule or a named character class - see below):
 
      / <sign>? <mantissa> <exponent>? /
@@ -2463,18 +2464,18 @@ the match. For example:
 
 The currently defined methods are
 
-    $/.from	# the initial match position
-    $/.to	# the final match position
-    $/.chars	# $/.to - $/.from
-    $/.orig	# the original match string
-    $/.Str	# substr($/.orig, $/.from, $/.chars)
+    $/.from     # the initial match position
+    $/.to       # the final match position
+    $/.chars    # $/.to - $/.from
+    $/.orig     # the original match string
+    $/.Str      # substr($/.orig, $/.from, $/.chars)
     $/.ast      # the abstract result associated with this node
     $/.caps     # sequential captures
     $/.chunks   # sequential tokenization
 
 Within the regex the current match state C<$¢> also provides
 
-    .pos	# the current match position
+    .pos        # the current match position
 
 This last value may correspond to either C<$¢.from> or C<$¢.to> depending
 on whether the match is proceeding in a forward or backward direction
@@ -3263,7 +3264,7 @@ For example:
 Note, however, that a set of quantified I<non-capturing> brackets always
 returns a single C<Match> object which contains only the complete
 substring that was matched by the full set of repetitions of the
-brackets (as described in L<Named scalar aliases applied to 
+brackets (as described in L<Named scalar aliases applied to
 non-capturing brackets>). For example:
 
      "coffee fifo fumble" ~~ m/ $<effs>=[f <-[f]> ** 1..2 \s*]+ /;
