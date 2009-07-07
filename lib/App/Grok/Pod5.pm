@@ -3,7 +3,7 @@ package App::Grok::Pod5;
 use strict;
 use warnings;
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 my %formatter = (
     text  => 'Pod::Text',

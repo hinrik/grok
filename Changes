@@ -1,4 +1,4 @@
-0.11
+0.11 Mon Jul  6 23:36:06 EDT 2009
     - Use PAGER environment variable if set
     - Fix bug which was causing it to only accept 's02' but not 's02-bits'
     - Make target_index (and, by extension, --index) return function list
