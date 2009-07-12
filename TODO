@@ -15,5 +15,7 @@ Perl6::Perldoc-related
 --------------------
  * Figure out how to wrap lines to $COLUMNS
  * Maybe write an nroff renderer (for --format=man)
- * Modify Perl6::Perldoc::To::Ansi to use the same coloring as Pod::Text::Color
  * Allow passing through the Pod verbatim (for --unformatted / --format=pod)
+ * Maybe indent paragraphs automatically like Pod::Text does
+
+

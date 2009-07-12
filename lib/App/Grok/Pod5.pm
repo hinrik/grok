@@ -7,7 +7,7 @@ our $VERSION = '0.11';
 
 my %formatter = (
     text  => 'Pod::Text',
-    ansi  => 'Pod::Text::Color',
+    ansi  => 'Pod::Text::Ansi',
     xhtml => 'Pod::Xhtml',
     pod   => 'Pod::Perldoc::ToPod',
 );

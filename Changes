@@ -1,3 +1,7 @@
+0.12
+    - Depend on latest Perl6::Perldoc::To::Ansi and Pod::Text::Ansi
+      for a consistent look
+
 0.11 Mon Jul  6 23:36:06 EDT 2009
     - Use PAGER environment variable if set
     - Fix bug which was causing it to only accept 's02' but not 's02-bits'
