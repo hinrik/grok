@@ -193,7 +193,7 @@ sub find_synopsis {
     if (my ($section) = $syn =~ /^S32-(\S+)$/i) {
         my $S32_dir = catdir($dir, 'S32-setting-library');
         my @sections = map { (splitpath($_))[2] } glob "$S32_dir/*.pod";
-        my $found = first { /$section/i } @sections;
+        my $found = first { /^$section/i } @sections;
         
         if (defined $found) {
             return catfile($S32_dir, $found);
