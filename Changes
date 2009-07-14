@@ -3,6 +3,7 @@
       for a consistent look
     - Fix a bug causing "grok s32-str" to deliver s32-abstraction instead
       of s32-str
+    - If the pager is less(1), tell it to display colors without a fuss
 
 0.11 Mon Jul  6 23:36:06 EDT 2009
     - Use PAGER environment variable if set

@@ -44,16 +44,16 @@ sub run {
         print $file, "\n";
     }
     else {
-        my $output;
+        my $rendered;
         if ($opt{file}) {
-            $output = $self->render_file($opt{file}, $opt{output});
+            $rendered = $self->render_file($opt{file}, $opt{output});
         }
         else {
-            $output = $self->render_target($target, $opt{output});
+            $rendered = $self->render_target($target, $opt{output});
         }
 
-        die "Target '$target' not recognized\n" if !defined $output;
-        $self->_print($output);
+        die "Target '$target' not recognized\n" if !defined $rendered;
+        $self->_print($rendered, $opt{output});
     }
 
     return;
@@ -250,21 +250,26 @@ sub render_file {
 }
 
 sub _print {
-    my ($self, $output) = @_;
+    my ($self, $rendered, $output) = @_;
 
     if ($opt{no_pager} || !is_interactive()) {
-        print $output;
+        print $rendered;
     }
     else {
         my $pager = defined $ENV{PAGER} ? $ENV{PAGER} : $Config{pager};
+
+        my @args;
+        # tell less(1) to display colors without a fuss
+        push @args, '-f', '-R' if $pager =~ /less/ && $output eq 'ansi';
+
         my ($temp_fh, $temp) = tempfile(UNLINK => 1);
-        print $temp_fh $output;
+        print $temp_fh $rendered;
         close $temp_fh;
 
         # $pager might contain options (e.g. "more /e") so we pass a string
         $^O eq 'MSWin32'
-            ? system $pager . qq{ "$temp"}
-            : system $pager . qq{ '$temp'}
+            ? system $pager . qq{ @args "$temp"}
+            : system $pager . qq{ @args '$temp'}
         ;
     }
 
