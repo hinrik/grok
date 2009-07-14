@@ -1,4 +1,4 @@
-0.12
+0.12 Tue Jul 14 13:24:47 EDT 2009
     - Depend on latest Perl6::Perldoc::To::Ansi and Pod::Text::Ansi
       for a consistent look
     - Fix a bug causing "grok s32-str" to deliver s32-abstraction instead
