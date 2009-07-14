@@ -164,7 +164,8 @@ sub detect_source {
     my $contents = do { local $/ = undef; scalar <$handle> };
     close $handle;
 
-    my ($first_pod) = $contents =~ /(^=(?!encoding)\S+)/m;
+    $contents =~ s/.*^=encoding\b.*$//m; # skip over =encoding
+    my ($first_pod) = $contents =~ /^(=\S+)/m;
     return if !defined $first_pod; # no Pod found
 
     if ($first_pod =~ /^=(?:pod|head\d+|over)$/
