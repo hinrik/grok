@@ -3,7 +3,6 @@ use warnings;
 use File::Spec::Functions 'catfile';
 use Test::More tests => 2;
 
-$ENV{GROK_SHAREDIR} = 'share';
 my $grok = catfile('script', 'grok');
 
 my $fork = qx/$^X $grok fork/;

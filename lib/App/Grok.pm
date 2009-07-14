@@ -16,12 +16,6 @@ my %opt;
 
 sub new {
     my ($package, %self) = @_;
-
-    $self{share_dir} = defined $ENV{GROK_SHAREDIR}
-        ? $ENV{GROK_SHAREDIR}
-        : dist_dir('grok')
-    ;
-
     return bless \%self, $package;
 }
 
@@ -88,7 +82,7 @@ sub read_functions {
     return $self->{functions} if defined $self->{functions};
 
     my %functions;
-    my $S29_file = catfile($self->{share_dir}, 'Spec', 'S29-functions.pod');
+    my $S29_file = catfile(dist_dir('Perl6-Doc'), 'Synopsis', 'S29-functions.pod');
 
     ## no critic (InputOutput::RequireBriefOpen)
     open my $S29, '<', $S29_file or die "Can't open '$S29_file': $!";
@@ -137,23 +131,27 @@ sub read_functions {
 
 sub target_index {
     my ($self) = @_;
-    my $dir = catdir($self->{share_dir}, 'Spec');
+    
     my @index;
+    my %docs = map {
+        substr($_, 0, 1) => catdir(dist_dir('Perl6-Doc'), $_)
+    } qw<Apocalypse Exegesis Magazine Synopsis>;
 
-    # synopses
-    my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
-    s/\.pod$// for @synopses;
-    push @index, @synopses;
+    while (my ($type, $dir) = each %docs) {
+        my @parts = map { (splitpath($_))[2] } glob "$dir/*.pod";
+        s/\.pod$// for @parts;
+        push @index, @parts;
+    }
 
     # synopsis 32
-    my $S32_dir = catdir($dir, 'S32-setting-library');
+    my $S32_dir = catdir($docs{S}, 'S32-setting-library');
     my @sections = map { (splitpath($_))[2] } glob "$S32_dir/*.pod";
     s/\.pod$// for @sections;
     push @index, map { "S32-$_" } @sections;
 
     # functions from synopsis 29
     push @index, sort keys %{ $self->read_functions() };
-
+    
     return @index;
 }
 
@@ -180,19 +178,23 @@ sub detect_source {
 sub find_target_file {
     my ($self, $arg) = @_;
 
-    my $target = $self->find_synopsis($arg);
+    my $target = $self->find_perl6_doc($arg);
     $target = $self->find_module_or_program($arg) if !defined $target;
 
     return if !defined $target;
     return $target;
 }
 
-sub find_synopsis {
-    my ($self, $syn) = @_;
-    my $dir = catdir($self->{share_dir}, 'Spec');
+sub find_perl6_doc {
+    my ($self, $doc) = @_;
+    
+    my %docs = map {
+        substr($_, 0, 1) => catdir(dist_dir('Perl6-Doc'), $_)
+    } qw<Apocalypse Exegesis Magazine Synopsis>;
 
-    if (my ($section) = $syn =~ /^S32-(\S+)$/i) {
-        my $S32_dir = catdir($dir, 'S32-setting-library');
+    # S32 is split up, need to special-case it
+    if (my ($section) = $doc =~ /^S32-(\S+)$/i) {
+        my $S32_dir = catdir($docs{S}, 'S32-setting-library');
         my @sections = map { (splitpath($_))[2] } glob "$S32_dir/*.pod";
         my $found = first { /^$section/i } @sections;
         
@@ -200,12 +202,12 @@ sub find_synopsis {
             return catfile($S32_dir, $found);
         }
     }
-    elsif ($syn =~ /^S\d+/i) {
-        my @synopses = map { (splitpath($_))[2] } glob "$dir/*.pod";
-        my $found = first { /\Q$syn/i } @synopses;
+    elsif (my ($type) = $doc =~ /^(\w)\d+/i) {
+        my @parts = map { (splitpath($_))[2] } glob "$docs{uc $type}/*.pod";
+        my $found = first { /\Q$doc/i } @parts;
         
         return if !defined $found;
-        return catfile($dir, $found);
+        return catfile($docs{uc $type}, $found);
     }
 
     return;
@@ -322,7 +324,7 @@ any Pod.
 Takes a valid C<grok> target as an argument. If found, it will return a path
 to a matching file, otherwise it returns nothing.
 
-=head2 C<find_synopsis>
+=head2 C<find_perl6_doc>
 
 Takes the name (or a substring of a name) of a Synopsis as an argument.
 Returns a path to a matching file if one is found, otherwise returns nothing.
