@@ -17,17 +17,22 @@ SYNOPSIS
      If you don't supply the -F or -i options, you need to supply a target.
      The following targets are recognized:
 
-       * A synopsis name (e.g. 's02', 's02-bits', 's32-rules')
-       * A path to a file containing Pod
+       * A Synopsis name ('s02', 's02-bits', 's32-rules')
+       * An Apocalypse name ('a01', 'a02', 'a03')
+       * An Exegesis name ('e01', 'e02', 'e03')
+       * An article name ('m01', 'm01-perl6-announcement', 'm02')
        * A function name from Synopsis 29
+       * An entry in the Perl 6 Table Index ('%', '!=', 'split')
+       * The Perl 6 Table Index itself ('table_index')
+       * A path to a file containing Pod ('/some/file.pod')
 
 DESCRIPTION
     This little application is intended to be a "perldoc" for Perl 6.
 
   Prior art and inspiration
-    <Perl 5's "perldoc">
-    <Python's "pydoc">
-    <Ruby's "ri">
+    Perl 5's "perldoc"
+    Python's "pydoc"
+    Ruby's "ri"
     <http://svn.pugscode.org/pugs/ext/Perldoc/>
     <http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
