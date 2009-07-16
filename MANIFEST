@@ -22,6 +22,7 @@ t/03_opts/06_index.t
 t/04_targets/01_file.t
 t/04_targets/02_synopsis.t
 t/04_targets/03_function.t
+t/04_targets/04_table.t
 t_source/basic.pod
 t_source/basic5.pod
 xt/perlcriticrc

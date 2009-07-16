@@ -36,6 +36,9 @@ B<grok> <options> <target>
    * An Exegesis name ('e01', 'e02', 'e03')
    * An article name ('m01', 'm01-perl6-announcement', 'm02')
    * A function name from Synopsis 29
+   * An entry in the Perl 6 Table Index ('%', '!=', 'split')
+   * The Perl 6 Table Index itself ('table_index')
+   * A path to a file containing Pod ('/some/file.pod')
 
 =head1 DESCRIPTION
 

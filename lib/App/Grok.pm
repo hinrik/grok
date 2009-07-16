@@ -129,6 +129,27 @@ sub read_functions {
     return $self->{functions};
 }
 
+sub read_table {
+    my ($self) = @_;
+
+    return $self->{table} if defined $self->{table};
+
+    my %table;
+    my $table_file = catfile(dist_dir('Perl6-Doc'), 'table_index.pod');
+
+    ## no critic (InputOutput::RequireBriefOpen)
+    open my $table_handle, '<', $table_file or die "Can't open '$table_file': $!";
+
+    my $entry;
+    while (my $line = <$table_handle>) {
+        $entry = $1 if $line =~ /^=head2 C<<< (.+) >>>$/;
+        $table{$entry} .= $line if defined $entry;
+    }
+
+    $self->{table} = \%table;
+    return \%table;
+}
+
 sub target_index {
     my ($self) = @_;
     
@@ -151,6 +172,9 @@ sub target_index {
 
     # functions from synopsis 29
     push @index, sort keys %{ $self->read_functions() };
+
+    # entries from the Perl 6 Table Index
+    push @index, sort keys %{ $self->read_table() };
     
     return @index;
 }
@@ -188,8 +212,11 @@ sub find_target_file {
 sub find_perl6_doc {
     my ($self, $doc) = @_;
     
+    my $dist = dist_dir('Perl6-Doc');
+    return catfile($dist, 'table_index.pod') if $doc eq 'table_index';
+
     my %docs = map {
-        substr($_, 0, 1) => catdir(dist_dir('Perl6-Doc'), $_)
+        substr($_, 0, 1) => catdir($dist, $_)
     } qw<Apocalypse Exegesis Magazine Synopsis>;
 
     # S32 is split up, need to special-case it
@@ -231,6 +258,15 @@ sub render_target {
         eval "require $renderer";
         die $@ if $@;
         my $content = "=head1 $func\n\n$body";
+        return $renderer->new->render_string($content, $output);
+    }
+
+    my $entries = $self->read_table();
+    if (defined $entries->{$target}) {
+        my $content = $entries->{$target};
+        my $renderer = 'App::Grok::Pod5';
+        eval "require $renderer";
+        die $@ if $@;
         return $renderer->new->render_string($content, $output);
     }
 
@@ -311,7 +347,12 @@ Takes no arguments. Returns a list of all the targets known to C<grok>.
 
 Takes no arguments. Returns a hash reference of all function documentation
 from Synopsis 29. There will be a key for every function, with the value being
-a Pod snipped from Synopsis 29.
+a Pod snippet from Synopsis 29.
+
+=head2 C<read_table>
+
+Takes no arguments. Returns a hash reference of all entries in the
+I<Perl 6 Table Index>. Keys are the entry names, values are Pod snippets.
 
 =head2 C<detect_source>
 
