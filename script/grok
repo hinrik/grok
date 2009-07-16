@@ -31,8 +31,10 @@ B<grok> <options> <target>
  If you don't supply the -F or -i options, you need to supply a target.
  The following targets are recognized:
 
-   * A synopsis name (e.g. 's02', 's02-bits', 's32-rules')
-   * A path to a file containing Pod
+   * A Synopsis name ('s02', 's02-bits', 's32-rules')
+   * An Apocalypse name ('a01', 'a02', 'a03')
+   * An Exegesis name ('e01', 'e02', 'e03')
+   * An article name ('m01', 'm01-perl6-announcement', 'm02')
    * A function name from Synopsis 29
 
 =head1 DESCRIPTION
