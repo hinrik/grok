@@ -64,12 +64,20 @@ This little application is intended to be a C<L<perldoc>> for Perl 6.
 
 =head2 Limitations of C<Perl6::Perldoc>
 
-Long lines are not wrapped to fit your terminal.
+I<The following only affects Pod 6 documents.>
 
-Extraneous whitespace in paragraphs is preserved, counter to the spec.
+=over 2
 
-Formatting codes using french quotes (C<C«»>) aren't parsed correctly, so
-they are rendered verbatim.
+=item * Long lines are not wrapped to fit your terminal.
+
+=item * Extraneous whitespace in paragraphs is preserved, counter to the spec.
+
+=item * Formatting codes using french quotes (C<C«»>) aren't parsed correctly,
+so they are rendered verbatim.
+
+=item * Formatting codes within C<=table> blocks are ignored.
+
+=back
 
 =head1 AUTHOR
 
