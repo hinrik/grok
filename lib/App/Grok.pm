@@ -73,7 +73,7 @@ sub _get_options {
         'F|file=s'      => \$opt{file},
         'h|help'        => sub { pod2usage(1) },
         'i|index'       => \$opt{index},
-        'l|only'        => \$opt{only},
+        'l|locate'      => \$opt{locate},
         'o|output=s'    => \($opt{output} = $GOT_ANSI ? 'ansi' : 'text'),
         'T|no-pager'    => \$opt{no_pager},
         'u|unformatted' => sub { $opt{output} = 'pod' },
