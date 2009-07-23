@@ -1,4 +1,4 @@
-package App::Grok::Pod5;
+package App::Grok::Parser::Pod5;
 
 use strict;
 use warnings;
@@ -48,7 +48,7 @@ sub render_string {
 
 =head1 NAME
 
-App::Grok::Pod5 - A Pod 5 backend for grok
+App::Grok::Parser::Pod5 - A Pod 5 backend for grok
 
 =head1 METHODS
 

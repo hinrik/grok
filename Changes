@@ -1,5 +1,6 @@
 0.15
     - Rename -l/--only option to -l/--locate
+    - Move parsers to the App::Grok::Parser:: namespace
 
 0.14 Fri Jul 24 09:20:07 GMT 2009
     - Remove Module::Install::AuthorRequires for now, it's not working right

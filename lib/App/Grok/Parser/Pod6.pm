@@ -1,4 +1,4 @@
-package App::Grok::Pod6;
+package App::Grok::Parser::Pod6;
 
 # blows up if we use strict before this, damn source filter
 use Perl6::Perldoc::Parser;
@@ -43,7 +43,7 @@ sub render_string {
 
 =head1 NAME
 
-App::Grok::Pod6 - A Pod 6 backend for grok
+App::Grok::Parser::Pod6 - A Pod 6 backend for grok
 
 =head1 METHODS
 

@@ -205,10 +205,10 @@ sub detect_source {
 
     if ($first_pod =~ /^=(?:pod|head\d+|over)$/
             || $contents =~ /^=cut\b/m) {
-        return 'App::Grok::Pod5';
+        return 'App::Grok::Parser::Pod5';
     }
     else {
-        return 'App::Grok::Pod6';
+        return 'App::Grok::Parser::Pod6';
     }
 }
 
@@ -267,7 +267,7 @@ sub render_target {
     my $functions = $self->read_functions();
     if (defined $functions->{$target}) {
         my ($func, $body) = @{ $functions->{$target} };
-        my $renderer = 'App::Grok::Pod5';
+        my $renderer = 'App::Grok::Parser::Pod5';
         eval "require $renderer";
         die $@ if $@;
         my $content = "=head1 $func\n\n$body";
@@ -277,7 +277,7 @@ sub render_target {
     my $entries = $self->read_table();
     if (defined $entries->{$target}) {
         my $content = $entries->{$target};
-        my $renderer = 'App::Grok::Pod5';
+        my $renderer = 'App::Grok::Parser::Pod5';
         eval "require $renderer";
         die $@ if $@;
         return $renderer->new->render_string($content, $output);

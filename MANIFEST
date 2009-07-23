@@ -1,7 +1,7 @@
 script/grok
 lib/App/Grok.pm
-lib/App/Grok/Pod5.pm
-lib/App/Grok/Pod6.pm
+lib/App/Grok/Parser/Pod5.pm
+lib/App/Grok/Parser/Pod6.pm
 p6/grok
 Makefile.PL
 MANIFEST
