@@ -5,6 +5,8 @@
     - Added Win32::Console::ANSI as a recommended dep
     - Make sure we die if the target is not recognized
     - Fix small S32 parsing bug, causing Pod errors
+    - Look up man pages (perlintro, etc)
+    - Added test for -l/--locate
 
 0.15 Fri Jul 24 11:47:30 GMT 2009
     - Fix logic error causing 'ansi' not to be the default on non-Win32

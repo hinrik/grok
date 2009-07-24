@@ -48,12 +48,12 @@ sub run {
 
     my $target = defined $opt{file} ? $opt{file} : $ARGV[0];
 
-    if ($opt{only}) {
+    if ($opt{locate}) {
         if (defined $opt{file}) {
             print file_locate($opt{file}), "\n";
         }
         else {
-            my $file = $self->locate_target();
+            my $file = $self->locate_target($target);
             defined $file
                 ? print $file, "\n"
                 : die "Target file not found\n";
