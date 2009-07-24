@@ -123,7 +123,6 @@ sub _read_functions {
             elsif (defined $new_func[FILE]) {
                 # Adding documentation to the function name
                 $new_func[POD] .= $line;
-                #warn "new_func is now $new_func[1]\n";
             }
         }
 
