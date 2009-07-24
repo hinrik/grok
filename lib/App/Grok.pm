@@ -145,6 +145,7 @@ sub render_target {
     $found = spec_fetch($target) if !defined $found;
     $found = table_fetch($target) if !defined $found;
     $found = file_fetch($target) if !defined $found;
+    die "Target '$target' not recognized\n" if !defined $found;
 
     my $parser = $self->detect_source($found);
     eval "require $parser";
