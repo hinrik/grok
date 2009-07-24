@@ -14,6 +14,19 @@ use Pod::Usage;
 our $VERSION = '0.13';
 my %opt;
 
+our $GOT_ANSI;
+BEGIN {
+    if ($^O ne 'Win32') {
+        eval {
+            require Win32::Console::ANSI;
+            $GOT_ANSI = 1;
+        }
+    }
+    else {
+        $GOT_ANSI = 1;
+    }
+}
+
 sub new {
     my ($package, %self) = @_;
     return bless \%self, $package;
@@ -61,7 +74,7 @@ sub _get_options {
         'h|help'        => sub { pod2usage(1) },
         'i|index'       => \$opt{index},
         'l|only'        => \$opt{only},
-        'o|output=s'    => \($opt{output} = 'ansi'),
+        'o|output=s'    => \($opt{output} = $GOT_ANSI ? 'ansi' : 'text'),
         'T|no-pager'    => \$opt{no_pager},
         'u|unformatted' => sub { $opt{output} = 'pod' },
         'V|version'  => sub { print "grok $VERSION\n"; exit },
