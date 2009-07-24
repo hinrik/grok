@@ -22,6 +22,7 @@ requires       ('Perl6::Perldoc'           => '0.0.5');
 requires       ('Perl6::Perldoc::To::Ansi' => '0.07');
 requires       ('Pod::Text::Ansi'          => '0.03');
 requires       ('Pod::Xhtml'               => '0');
+recommends     ('Win32::Console::ANSI'     => '0') if $^O eq 'Win32';
 test_requires  ('Test::More'               => '0');
 test_requires  ('Test::Script'             => '0');
 #author_requires('Perl::Critic'             => '1.098');
