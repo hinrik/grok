@@ -1,4 +1,4 @@
-0.16_02
+0.16_02 Fri Jul 24 15:19:07 GMT 2009
     - Added Win32::Console::ANSI as a recommended dep
     - Make sure we die if the target is not recognized
     - Fix small S32 parsing bug, causing Pod errors

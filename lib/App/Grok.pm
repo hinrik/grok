@@ -14,7 +14,7 @@ use Getopt::Long qw<:config bundling>;
 use List::Util qw<first>;
 use Pod::Usage;
 
-our $VERSION = '0.16_01';
+our $VERSION = '0.16_02';
 my %opt;
 
 our $GOT_ANSI;
