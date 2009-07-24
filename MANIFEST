@@ -30,6 +30,7 @@ t/04_targets/02_synopsis.t
 t/04_targets/03_function.t
 t/04_targets/04_table.t
 t/04_targets/05_failure.t
+t/04_targets/06_man_page.t
 t_source/basic.pod
 t_source/basic5.pod
 xt/perlcriticrc

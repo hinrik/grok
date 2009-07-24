@@ -18,7 +18,6 @@ my %docs = map {
 
 sub spec_fetch {
     my ($topic) = @_;
-    return if $topic !~ /^\w\d\d/;
     _build_index() if !%index;
     
     for my $doc (keys %index) {
@@ -57,6 +56,14 @@ sub _build_index {
         }
     }
 
+    # man pages (perlintro, etc)
+    my $pages_dir = catdir($dist_dir, 'man_pages');
+    for my $file (glob "$pages_dir/*.pod") {
+        my $name = (splitpath($file))[2];
+        $name =~ s/\.pod$//;
+        $index{$name} = $file;
+    }
+
     # synopsis 32
     my $S32_dir = catdir($docs{S}, 'S32-setting-library');
     for my $file (glob "$S32_dir/*.pod") {
@@ -93,6 +100,8 @@ App::Grok::Resource::Spec - Perl 6 specification resource for grok
 
 This module the locates Apocalypses, Exegeses, Synopsis and magazine articles
 distributed with L<Perl6::Doc>.
+
+It also includes user documentation like F<perlintro> and F<perlsyn>.
 
 =head1 METHODS
 
