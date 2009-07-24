@@ -8,7 +8,7 @@ SYNOPSIS
        -F FILE, --file=FILE         A file to read Pod from
        -h, --help                   Print this help message
        -i, --index                  Print index of things grok knows about
-       -l, --only                   Only print the path to the target file
+       -l, --locate                 Locate the target file
        -o FORMAT, --output=FORMAT   The output format, ansi/text/xhtml/pod
        -T, --no-pager               Send output to STDOUT without any pager
        -u, --unformatted            Print unformatted Pod output
@@ -30,20 +30,24 @@ DESCRIPTION
     This little application is intended to be a "perldoc" for Perl 6.
 
   Prior art and inspiration
-    Perl 5's "perldoc"
-    Python's "pydoc"
-    Ruby's "ri"
+    <Perl 5's "perldoc">
+    <Python's "pydoc">
+    <Ruby's "ri">
     <http://svn.pugscode.org/pugs/ext/Perldoc/>
     <http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
 CAVEATS
   Limitations of "Perl6::Perldoc"
-    Long lines are not wrapped to fit your terminal.
+    *The following only affects Pod 6 documents.*
 
-    Extraneous whitespace in paragraphs is preserved, counter to the spec.
+    * Long lines are not wrapped to fit your terminal.
 
-    Formatting codes using french quotes ("C«»") aren't parsed correctly, so
-    they are rendered verbatim.
+    * Extraneous whitespace in paragraphs is preserved, counter to the spec.
+
+    * Formatting codes using french quotes ("C«»") aren't parsed correctly,
+      so they are rendered verbatim.
+
+    * Formatting codes within "=table" blocks are ignored.
 
 AUTHOR
     Hinrik Örn Sigurðsson, hinrik.sig@gmail.com
