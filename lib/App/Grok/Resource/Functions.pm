@@ -99,7 +99,7 @@ sub _read_functions {
 
         my @new_func;
         while (my $line = <$handle>) {
-            if (my ($directive, $title) = $line =~ /^=(\S+) +(.+)/) {
+            if (my ($directive, $title) = $line =~ /^=(\S+)(?: +(.+))?/) {
                 if (defined $new_func[NAME]) {
                     my $name = $new_func[NAME];
                     
