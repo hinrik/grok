@@ -48,7 +48,7 @@ sub _build_table {
 1;
 =head1 NAME
 
-App::Grok::Resource::Table - Grok resource for the Perl 6 Table Index
+App::Grok::Resource::Table - Perl 6 Table Index resource for grok
 
 =head1 SYNOPSIS
 

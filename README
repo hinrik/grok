@@ -30,9 +30,10 @@ DESCRIPTION
     This little application is intended to be a "perldoc" for Perl 6.
 
   Prior art and inspiration
-    <Perl 5's "perldoc">
-    <Python's "pydoc">
-    <Ruby's "ri">
+    Perl 5's "perldoc" (<http://perldoc.perl.org/perldoc.html>)
+    Python's "pydoc" (<http://docs.python.org/library/pydoc.html>)
+    Ruby's "ri"
+    (<http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/lib/rdoc/>)
     <http://svn.pugscode.org/pugs/ext/Perldoc/>
     <http://svn.pugscode.org/pugs/examples/perldoc.pl>
 
