@@ -1,4 +1,4 @@
-0.15
+0.15 Fri Jul 24 11:47:30 GMT 2009
     - Fix logic error causing 'ansi' not to be the default on non-Win32
 
 0.14 Fri Jul 24 09:20:07 GMT 2009
