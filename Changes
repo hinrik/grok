@@ -1,4 +1,4 @@
-0.16
+0.16 Fri Jul 24 13:22:42 GMT 2009
     - Rename -l/--only option to -l/--locate
     - Move parsers to the App::Grok::Parser:: namespace
     - Move all resource backends to App::Grok::Resource::*
