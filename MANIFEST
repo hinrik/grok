@@ -32,7 +32,7 @@ xt/perl_critic_tests.t
 xt/pod_coverage.t
 xt/pod.t
 inc/Module/Install.pm
-inc/Module/Install/AuthorRequires.pm
+#inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm

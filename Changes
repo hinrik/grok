@@ -1,3 +1,6 @@
+0.14
+    - Remove Module::Install::AuthorRequires for now, it's not working right
+
 0.13 Thu Jul 16 06:14:13 GMT 2009
     - Look up things from the Perl 6 Table Index
 
