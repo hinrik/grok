@@ -2,10 +2,10 @@ use strict;
 use warnings;
 use File::Spec::Functions 'catfile';
 use Test::More tests => 4;
-use App::Grok::Pod5;
+use App::Grok::Parser::Pod5;
 
 my $pod = catfile('t_source', 'basic5.pod');
-ok(my $render = App::Grok::Pod5->new(), 'Constructed renderer object');
+ok(my $render = App::Grok::Parser::Pod5->new(), 'Constructed renderer object');
 
 my $text = $render->render_file($pod, 'text');
 my $ansi = $render->render_file($pod, 'ansi');

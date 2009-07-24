@@ -1,7 +1,12 @@
 script/grok
 lib/App/Grok.pm
-lib/App/Grok/Pod5.pm
-lib/App/Grok/Pod6.pm
+lib/App/Grok/Parser/Pod5.pm
+lib/App/Grok/Parser/Pod6.pm
+lib/App/Grok/Resource/File.pm
+lib/App/Grok/Resource/Functions.pm
+lib/App/Grok/Resource/Spec.pm
+lib/App/Grok/Resource/Table.pm
+lib/App/Grok/Resource/u4x.pm
 p6/grok
 Makefile.PL
 MANIFEST

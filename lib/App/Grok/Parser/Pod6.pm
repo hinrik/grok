@@ -1,16 +1,12 @@
-package App::Grok::Pod5;
+package App::Grok::Parser::Pod6;
+
+# blows up if we use strict before this, damn source filter
+use Perl6::Perldoc::Parser;
 
 use strict;
 use warnings;
 
 our $VERSION = '0.15';
-
-my %formatter = (
-    text  => 'Pod::Text',
-    ansi  => 'Pod::Text::Ansi',
-    xhtml => 'Pod::Xhtml',
-    pod   => 'Pod::Perldoc::ToPod',
-);
 
 sub new {
     my ($package, %self) = @_;
@@ -20,17 +16,16 @@ sub new {
 sub render_file {
     my ($self, $file, $format) = @_;
 
-    my $form = $formatter{$format};
-    die __PACKAGE__ . " doesn't support the '$format' format" if !defined $form;
-    eval "require $form";
+    if ($format !~ /^(?:ansi|text|xhtml)$/) {
+        die __PACKAGE__ . " doesn't support the '$format' format";
+    }
+    eval "require Perl6::Perldoc::To::\u$format";
     die $@ if $@;
 
-    my $pod = '';
-    open my $out_fh, '>', \$pod or die "Can't open output filehandle: $!";
-    binmode $out_fh, ':utf8' if $form ne 'Pod::Perldoc::ToPod';
-    $form->new->parse_from_file($file, $out_fh);
-    close $out_fh;
-    return $pod;
+    my $method = "to_$format";
+    return Perl6::Perldoc::Parser->parse($file, {all_pod=>'auto'})
+                                 ->report_errors()
+                                 ->$method();
 }
 
 sub render_string {
@@ -48,7 +43,7 @@ sub render_string {
 
 =head1 NAME
 
-App::Grok::Pod5 - A Pod 5 backend for grok
+App::Grok::Parser::Pod6 - A Pod 6 backend for grok
 
 =head1 METHODS
 
