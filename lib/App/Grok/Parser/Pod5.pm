@@ -2,6 +2,7 @@ package App::Grok::Parser::Pod5;
 
 use strict;
 use warnings;
+use File::Temp qw<tempfile>;
 
 our $VERSION = '0.14';
 
@@ -25,12 +26,23 @@ sub render_file {
     eval "require $form";
     die $@ if $@;
 
-    my $pod = '';
-    open my $out_fh, '>', \$pod or die "Can't open output filehandle: $!";
-    binmode $out_fh, ':utf8' if $form ne 'Pod::Perldoc::ToPod';
+    my $done = '';
+    ## no critic (InputOutput::RequireBriefOpen)
+    open my $out_fh, '>', \$done or die "Can't open output filehandle: $!";
+
+    if ($form eq 'Pod::Perldoc::ToPod') {
+        my ($temp_fh, $temp) = tempfile();
+        my $pod = do { local $/ = undef; scalar <$file> };
+        print $temp_fh $pod;
+        $file = $temp;
+    }
+    else {
+        binmode $out_fh, ':utf8' if $form ne 'Pod::Perldoc::ToPod';
+    }
+
     $form->new->parse_from_file($file, $out_fh);
     close $out_fh;
-    return $pod;
+    return $done;
 }
 
 sub render_string {

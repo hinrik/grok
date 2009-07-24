@@ -37,4 +37,4 @@ like($pod5_ansi_long, qr/\e\[/, "Pod 5 ANSI has color codes (--output)");
 isnt($pod5_text_long, $pod5_xhtml_long, "Pod 5 text and xhtml are different (--output)");
 like($pod5_xhtml_long, qr/<p>/, "Pod 5 xhtml has <p> (--output)");
 isnt($pod5_text_long, $pod5_pod_long, "Pod 5 text and pod are different (--output)");
-like($pod5_pod_long, qr/^=head1/m, "Pod 5 pod has =item (--output)");
+like($pod5_pod_long, qr/^=head1/m, "Pod 5 pod has =head1 (--output)");
