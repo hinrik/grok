@@ -1,6 +1,7 @@
 0.16_03
     - Small Pod fixes
     - Depend on Perl6::Doc 0.43
+    - Use UTF-8 encoding for Pod in Functions and Table resources
 
 0.16_02 Fri Jul 24 15:19:07 GMT 2009
     - Added Win32::Console::ANSI as a recommended dep

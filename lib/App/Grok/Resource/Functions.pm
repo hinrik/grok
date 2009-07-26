@@ -77,7 +77,7 @@ sub _read_functions {
 
     my %S29_sanitized;
     while (my ($func, $body) = each %S29_funcs) {
-        $body = "=head2 C<<< $func >>>\n$body";
+        $body = "=encoding UTF-8\n\n=head2 C<<< $func >>>\n$body";
         $S29_sanitized{$func} = [$func, $body, $S29_file] if $func !~ /\s/;
 
         if ($func =~ /,/) {
@@ -115,7 +115,7 @@ sub _read_functions {
                     $title =~ s/^(\S+)\s*\(.*/$1/;
                     if ($title =~ /^\S+$/) {
                         $new_func[NAME] = $title;
-                        $new_func[POD] = "=head2 C<<< $title >>>\n";
+                        $new_func[POD] = "=encoding UTF-8\n\n=head2 C<<< $title >>>\n";
                         $new_func[FILE] = $section;
                     }
                 }

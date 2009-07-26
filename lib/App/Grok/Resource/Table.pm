@@ -40,7 +40,10 @@ sub _build_table {
     while (my $line = <$table_handle>) {
         $entry = $1 if $line =~ /^=head2 C<<< (.+) >>>$/;
         $table{$entry} .= $line if defined $entry;
-    }   
+    }
+    while (my ($key, $value) = each %table) {
+        $table{$key} = "=encoding UTF-8\n\n$value";
+    }
 
     return;
 }
