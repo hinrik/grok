@@ -3,7 +3,7 @@ package App::Grok::Resource::File;
 use strict;
 use warnings;
 
-our $VERSION = '0.16_02';
+our $VERSION = '0.17';
 use base qw(Exporter);
 our @EXPORT_OK = qw(file_index file_fetch file_locate);
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );

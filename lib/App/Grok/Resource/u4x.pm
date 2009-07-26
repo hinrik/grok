@@ -3,7 +3,7 @@ package App::Grok::Resource::u4x;
 use strict;
 use warnings;
 
-our $VERSION = '0.16_02';
+our $VERSION = '0.17';
 use base qw(Exporter);
 our @EXPORT_OK = qw(u4x_index u4x_fetch u4x_locate);
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );

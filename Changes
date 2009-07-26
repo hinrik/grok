@@ -1,4 +1,4 @@
-0.16_03
+0.17 Sun Jul 26 00:17:16 GMT 2009
     - Small Pod fixes
     - Depend on Perl6::Doc 0.43
     - Use UTF-8 encoding for Pod in Functions and Table resources
