@@ -5,6 +5,7 @@ use Test::Script;
 use Pod::Simple ();
 use Pod::Text ();
 use Pod::Xhtml ();
+diag('Pod::Parser version ' . $Pod::Parser::VERSION);
 diag('Pod::Simple version ' . $Pod::Simple::VERSION);
 diag('Pod::Text version '   . $Pod::Text::VERSION);
 diag('Pod::Xhtml version '  . $Pod::Xhtml::VERSION);

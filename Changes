@@ -1,3 +1,6 @@
+0.18_02
+    - Forgot Pod::Parser
+
 0.18_01 Sun Jul 26 13:26:36 GMT 2009
     - Add some diagnostics to figure out some test failures
 
