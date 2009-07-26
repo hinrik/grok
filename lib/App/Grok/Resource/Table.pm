@@ -5,7 +5,7 @@ use warnings;
 use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catfile>;
 
-our $VERSION = '0.17';
+our $VERSION = '0.18_01';
 use base qw(Exporter);
 our @EXPORT_OK = qw(table_index table_fetch table_locate);
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );
