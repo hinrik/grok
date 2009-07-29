@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use File::Temp qw<tempfile>;
 
-our $VERSION = '0.18_01';
+our $VERSION = '0.18_02';
 
 my %formatter = (
     text  => 'Pod::Text',
