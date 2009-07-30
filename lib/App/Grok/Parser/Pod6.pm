@@ -32,6 +32,7 @@ sub render_string {
     my ($self, $string, $format) = @_;
 
     open my $handle, '<', \$string or die "Can't open input filehandle: $!";
+    binmode $handle, ':utf8';
     my $result = $self->render_file($handle, $format);
     close $handle;
     return $result;
