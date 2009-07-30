@@ -9,4 +9,4 @@ my $perlintro = qx/$^X $grok perlintro/;
 my $perlsyn   = qx/$^X $grok perlsyn/;
 
 like($perlintro, qr/A brief introduction and overview of Perl 6/, 'Got perlintro');
-like($perlsyn, qr/Perl syntax/, 'Got perlsyn');
+like($perlsyn, qr/Perl 6 syntax/, 'Got perlsyn');
