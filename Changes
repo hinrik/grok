@@ -1,4 +1,5 @@
 0.19
+    - Depend on a Pod::Text::Ansi 0.04
     - Added dependency on Pod::Parser 1.36, because earlier versions
       don't recognize =encoding
     - Assume Pod 6 is UTF-8 encoded
