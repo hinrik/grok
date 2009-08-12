@@ -1,4 +1,4 @@
-0.19
+0.19 Wed Aug 12 17:42:49 GMT 2009
     - Depend on a Pod::Text::Ansi 0.04
     - Added dependency on Pod::Parser 1.36, because earlier versions
       don't recognize =encoding

@@ -5,7 +5,7 @@ use warnings;
 use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catdir catfile splitpath>;
 
-our $VERSION = '0.18_02';
+our $VERSION = '0.19';
 use base qw(Exporter);
 our @EXPORT_OK = qw(func_index func_fetch func_locate);
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );
