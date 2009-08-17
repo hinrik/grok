@@ -21,7 +21,7 @@ sub spec_fetch {
     _build_index() if !%index;
     
     for my $doc (keys %index) {
-        if ($doc =~ /^$topic/i) {
+        if ($doc =~ /^\Q$topic/i) {
             open my $handle, '<', $index{$doc} or die "Can't open $index{$doc}: $!";
             my $pod = do { local $/ = undef; scalar <$handle> };
             close $handle;
