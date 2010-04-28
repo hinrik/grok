@@ -1,6 +1,7 @@
 0.20
     - Fixed an error in a regex when matching Synopses et al
     - Added (simplified) parsing of some u4x terms
+    - Prevent duplicate test error from Module::Install
 
 0.19 Wed Aug 12 17:42:49 GMT 2009
     - Depend on a Pod::Text::Ansi 0.04

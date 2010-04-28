@@ -3,6 +3,11 @@ use warnings;
 use inc::Module::Install;
 use 5.006;
 
+my $mi = '0.94';
+if ($inc::Module::Install::VERSION lt $mi) {
+    die "Your Module::Install is older than $mi, please upgrade it";
+}
+
 name           ('grok');
 perl_version   ('5.006');
 author         ('Hinrik Örn Sigurðsson <hinrik.sig@gmail.com>');
@@ -31,6 +36,5 @@ test_requires  ('Test::Script'             => '0');
 #author_requires('Test::Pod'                => '0');
 #author_requires('Test::Pod::Coverage'      => '0');
 tests_recursive();
-recursive_author_tests('xt');
 WriteAll();
 
