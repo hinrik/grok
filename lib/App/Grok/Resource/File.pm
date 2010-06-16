@@ -57,7 +57,7 @@ App::Grok::Resource::File - Standard file resource for grok
 
 This resource finds arbitrary documentation on the filesystem.
 
-=head1 METHODS
+=head1 FUNCTIONS
 
 =head2 C<file_index>
 

@@ -1,11 +1,12 @@
 script/grok
 lib/App/Grok.pm
+lib/App/Grok/Common.pm
 lib/App/Grok/Parser/Pod5.pm
 lib/App/Grok/Parser/Pod6.pm
 lib/App/Grok/Resource/File.pm
 lib/App/Grok/Resource/Functions.pm
 lib/App/Grok/Resource/Spec.pm
-lib/App/Grok/Resource/Table.pm
+lib/App/Grok/Resource/Tablet.pm
 lib/App/Grok/Resource/u4x.pm
 p6/grok
 Makefile.PL
@@ -28,7 +29,7 @@ t/03_opts/07_locate.t
 t/04_targets/01_file.t
 t/04_targets/02_synopsis.t
 t/04_targets/03_function.t
-t/04_targets/04_table.t
+t/04_targets/04_tablet.t
 t/04_targets/05_failure.t
 t/04_targets/06_man_page.t
 t_source/basic.pod

@@ -1,3 +1,6 @@
+0.21
+    - Add -U/--update to download latest versions of documents from the web
+
 0.20 Tue Jun 15 14:02:57 GMT 2010
     - Fixed an error in a regex when matching Synopses et al
     - Added (simplified) parsing of some u4x terms

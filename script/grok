@@ -25,6 +25,7 @@ B<grok> <options> <target>
    -l, --locate                 Locate the target file
    -o FORMAT, --output=FORMAT   The output format, ansi/text/xhtml/pod
    -T, --no-pager               Send output to STDOUT without any pager
+   -U, --update                 Update all document resources from the web
    -u, --unformatted            Print unformatted Pod output
    -V, --version                Print version information
 
@@ -37,7 +38,7 @@ B<grok> <options> <target>
    * An article name ('m01', 'm01-perl6-announcement', 'm02')
    * A function name from Synopsis 29
    * An entry in the Perl 6 Table Index ('%', '!=', 'split')
-   * The Perl 6 Table Index itself ('table_index')
+   * The Perl 6 Tablet Index itself ('tablet_index')
    * A path to a file containing Pod ('/some/file.pod')
 
 =head1 DESCRIPTION

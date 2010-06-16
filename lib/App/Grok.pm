@@ -5,10 +5,11 @@ use warnings;
 use App::Grok::Resource::File qw<:ALL>;
 use App::Grok::Resource::Functions qw<:ALL>;
 use App::Grok::Resource::Spec qw<:ALL>;
-use App::Grok::Resource::Table qw<:ALL>;
+use App::Grok::Resource::Tablet qw<:ALL>;
 use App::Grok::Resource::u4x qw<:ALL>;
 use Config qw<%Config>;
 use File::Temp qw<tempfile>;
+use File::Spec::Functions qw<catdir>;
 use IO::Interactive qw<is_interactive>;
 use Getopt::Long qw<:config bundling>;
 use List::Util qw<first>;
@@ -40,7 +41,12 @@ sub run {
 
     $self->_get_options();
 
-    if ($opt{index}) {
+    if ($opt{update}) {
+        spec_update();
+        tablet_update();
+        return;
+    }
+    elsif ($opt{index}) {
         my @index = $self->target_index();
         print "$_\n" for @index;
         return;
@@ -87,10 +93,11 @@ sub _get_options {
         'o|output=s'    => \($opt{output} = $GOT_ANSI ? 'ansi' : 'text'),
         'T|no-pager'    => \$opt{no_pager},
         'u|unformatted' => sub { $opt{output} = 'pod' },
+        'U|update'      => \$opt{update},
         'V|version'  => sub { print "grok $VERSION\n"; exit },
     ) or pod2usage();
 
-    if (!$opt{index} && !defined $opt{file} && !@ARGV) {
+    if (!$opt{update} && !$opt{index} && !defined $opt{file} && !@ARGV) {
         warn "Too few arguments\n";
         pod2usage();
     }
@@ -101,7 +108,7 @@ sub _get_options {
 sub target_index {
     my ($self) = @_;
     my %index;
-    @index{table_index()} = 1;
+    @index{tablet_index()} = 1;
     @index{spec_index()} = 1;
     @index{func_index()} = 1;
     @index{u4x_index()} = 1;
@@ -114,7 +121,7 @@ sub locate_target {
     my $found = u4x_locate($target);
     $found = func_locate($target) if !defined $found;
     $found = spec_locate($target) if !defined $found;
-    $found = table_locate($target) if !defined $found;
+    $found = tablet_locate($target) if !defined $found;
     $found = file_locate($target) if !defined $found;
 
     return $found if defined $found;
@@ -143,7 +150,7 @@ sub render_target {
     my $found = u4x_fetch($target);
     $found = func_fetch($target) if !defined $found;
     $found = spec_fetch($target) if !defined $found;
-    $found = table_fetch($target) if !defined $found;
+    $found = tablet_fetch($target) if !defined $found;
     $found = file_fetch($target) if !defined $found;
     die "Target '$target' not recognized\n" if !defined $found;
 

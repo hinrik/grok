@@ -12,6 +12,7 @@ verbose  = 3
 [-Variables::RequireLocalizedPunctuationVars]
 
 [-BuiltinFunctions::ProhibitStringyEval]
+[-BuiltinFunctions::ProhibitComplexMappings]
 
 [-Subroutines::ProhibitBuiltinHomonyms]
 [-Subroutines::RequireArgUnpacking]

@@ -64,7 +64,7 @@ App::Grok::Resource::u4x - u4x resource for grok
 This resource looks maintains an index of syntax items that can be looked up.
 See L<http://svn.pugscode.org/pugs/docs/u4x/README>.
 
-=head1 METHODS
+=head1 FUNCTIONS
 
 =head2 C<u4x_index>
 
