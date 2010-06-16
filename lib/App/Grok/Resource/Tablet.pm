@@ -7,7 +7,7 @@ use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catdir catfile>;
 use File::stat;
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 use base qw<Exporter>;
 our @EXPORT_OK = qw<tablet_index tablet_fetch tablet_locate tablet_update>;
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );
