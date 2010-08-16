@@ -15,7 +15,6 @@ use Getopt::Long qw<:config bundling>;
 use List::Util qw<first>;
 use Pod::Usage;
 
-our $VERSION = '0.21';
 my %opt;
 
 our $GOT_ANSI;
@@ -94,7 +93,12 @@ sub _get_options {
         'T|no-pager'    => \$opt{no_pager},
         'u|unformatted' => sub { $opt{output} = 'pod' },
         'U|update'      => \$opt{update},
-        'V|version'  => sub { print "grok $VERSION\n"; exit },
+        'V|version'  => sub {
+            no strict 'vars';
+            my $version = defined $VERSION ? $VERSION : 'dev-git';
+            print "grok $version\n";
+            exit;
+        },
     ) or pod2usage();
 
     if (!$opt{update} && !$opt{index} && !defined $opt{file} && !@ARGV) {

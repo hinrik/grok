@@ -6,7 +6,6 @@ use App::Grok::Common qw<data_dir download>;
 use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catdir catfile splitpath>;
 
-our $VERSION = '0.21';
 use base qw(Exporter);
 our @EXPORT_OK = qw(spec_index spec_fetch spec_locate spec_update);
 our %EXPORT_TAGS = ( ALL => [@EXPORT_OK] );

@@ -4,7 +4,7 @@ use File::Spec::Functions 'catfile';
 use Test::More tests => 1;
 
 # grok should die with an error message if the target is not recognized
-my $grok = catfile('script', 'grok');
+my $grok = catfile('bin', 'grok');
 
 my $target = 'definitely_completely_unrecognized_target';
 my $result = qx/$^X $grok $target 2>&1/;

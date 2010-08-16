@@ -3,7 +3,7 @@ use warnings;
 use File::Spec::Functions 'catfile';
 use Test::More tests => 2;
 
-my $script = catfile('script', 'grok');
+my $script = catfile('bin', 'grok');
 my $pod = catfile('t_source', 'basic.pod');
 my $result_paged         = qx/$^X $script -F $pod/; # TODO: test this
 my $result_unpaged_short = qx/$^X $script -F $pod -T/;
