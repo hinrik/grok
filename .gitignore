@@ -1,5 +1,3 @@
-Makefile
-Makefile.old
 grok-*
-blib
+cover_db
 .build
