@@ -2,7 +2,7 @@
 
 package grok;
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 use App::Grok;
 my $grok = App::Grok->new();

@@ -1,7 +1,7 @@
 package App::Grok::Parser::Pod5;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use File::Temp qw<tempfile>;
 
 my %formatter = (

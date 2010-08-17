@@ -1,7 +1,7 @@
 package App::Grok;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use App::Grok::Resource::File qw<:ALL>;
 use App::Grok::Resource::Functions qw<:ALL>;
 use App::Grok::Resource::Spec qw<:ALL>;

@@ -1,7 +1,7 @@
 package App::Grok::Resource::Tablet;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use App::Grok::Common qw<data_dir download>;
 use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catdir catfile>;

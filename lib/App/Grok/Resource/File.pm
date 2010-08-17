@@ -1,7 +1,7 @@
 package App::Grok::Resource::File;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 use base qw(Exporter);
 our @EXPORT_OK = qw(file_index file_fetch file_locate);

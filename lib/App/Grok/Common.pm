@@ -1,7 +1,7 @@
 package App::Grok::Common;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use File::HomeDir qw<my_data>;
 use File::Spec::Functions qw<catdir>;
 

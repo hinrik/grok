@@ -4,7 +4,7 @@ package App::Grok::Parser::Pod6;
 use Perl6::Perldoc::Parser;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 sub new {
     my ($package, %self) = @_;

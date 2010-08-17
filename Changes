@@ -1,5 +1,6 @@
 {{$NEXT}}
     - Use Dist::Zilla
+    - Make all warnings fatal
 
 0.21 Wed Jun 16 19:36:56 GMT 2010
     - Add -U/--update to download latest versions of documents from the web

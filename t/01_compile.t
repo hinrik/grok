@@ -1,5 +1,5 @@
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use Test::More tests => 4;
 use Test::Script;
 use Pod::Simple ();

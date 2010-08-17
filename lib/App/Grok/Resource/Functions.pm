@@ -1,7 +1,7 @@
 package App::Grok::Resource::Functions;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 use File::ShareDir qw<dist_dir>;
 use File::Spec::Functions qw<catdir catfile splitpath>;
 

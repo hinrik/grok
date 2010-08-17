@@ -1,7 +1,7 @@
 package App::Grok::Resource::u4x;
 
 use strict;
-use warnings;
+use warnings FATAL => 'all';
 
 use base qw(Exporter);
 our @EXPORT_OK = qw(u4x_index u4x_fetch u4x_locate);
