@@ -38,7 +38,7 @@ sub render_string {
 
 1;
 
-=encoding UTF-8
+=encoding utf8
 
 =head1 NAME
 

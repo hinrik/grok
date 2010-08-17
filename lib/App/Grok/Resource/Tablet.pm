@@ -122,13 +122,16 @@ sub _build_tablet {
         $tablet{$entry} .= $line if defined $entry;
     }
     while (my ($key, $value) = each %tablet) {
-        $tablet{$key} = "=encoding UTF-8\n\n$value";
+        $tablet{$key} = "=encoding utf8\n\n$value";
     }
 
     return;
 }
 
 1;
+
+=encoding utf8
+
 =head1 NAME
 
 App::Grok::Resource::Tablet - Perl 6 Tablet Index resource for grok

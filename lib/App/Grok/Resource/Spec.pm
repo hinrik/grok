@@ -107,6 +107,9 @@ sub _build_index {
 }
 
 1;
+
+=encoding utf8
+
 =head1 NAME
 
 App::Grok::Resource::Spec - Perl 6 specification resource for grok

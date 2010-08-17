@@ -36,6 +36,9 @@ sub file_locate {
 }
 
 1;
+
+=encoding utf8
+
 =head1 NAME
 
 App::Grok::Resource::File - Standard file resource for grok

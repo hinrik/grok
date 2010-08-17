@@ -85,6 +85,8 @@ sub download {
 
 1;
 
+=encoding utf8
+
 =head1 NAME
 
 App::Grok::Common - Common functions used in grok

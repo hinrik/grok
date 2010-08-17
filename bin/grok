@@ -8,7 +8,7 @@ use App::Grok;
 my $grok = App::Grok->new();
 $grok->run();
 
-=encoding UTF-8
+=encoding utf8
 
 =head1 NAME
 
