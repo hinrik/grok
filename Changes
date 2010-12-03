@@ -1,4 +1,5 @@
 {{$NEXT}}
+    - Update hyperlinks to the Synopses
 
 0.22  Tue Aug 17 22:51:04 GMT 2010
     - Use Dist::Zilla
