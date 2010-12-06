@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.24  Mon Dec 6 03:27:30 GMT 2010
     - Depend on Perl6::Doc 0.47 to avoid test failures
 
 0.23  Fri Dec 3 07:34:21 GMT 2010
