@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.25  Thu Dec 9 09:05:18 GMT 2010
     - Skip testing S26, since Perl6::Perldoc currently can't parse it
 
 0.24  Mon Dec 6 03:27:30 GMT 2010
