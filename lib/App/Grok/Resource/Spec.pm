@@ -180,11 +180,11 @@ https://github.com/perl6/specs/raw/master/S17-concurrency.pod
 https://github.com/perl6/specs/raw/master/S19-commandline.pod
 https://github.com/perl6/specs/raw/master/S21-calling-foreign-code.pod
 https://github.com/perl6/specs/raw/master/S22-package-format.pod
+https://github.com/perl6/specs/raw/master/S24-testing.pod
 https://github.com/perl6/specs/raw/master/S26-documentation.pod
 https://github.com/perl6/specs/raw/master/S28-special-names.pod
 https://github.com/perl6/specs/raw/master/S29-functions.pod
 https://github.com/perl6/specs/raw/master/S31-pragmatic-modules.pod
-https://github.com/perl6/specs/raw/master/S32-setting-library/Abstraction.pod
 https://github.com/perl6/specs/raw/master/S32-setting-library/Basics.pod
 https://github.com/perl6/specs/raw/master/S32-setting-library/Callable.pod
 https://github.com/perl6/specs/raw/master/S32-setting-library/Containers.pod
